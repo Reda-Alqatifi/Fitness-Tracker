@@ -15,10 +15,10 @@ It is a project of the Fund of Web Programming made by Group (1):
 | Name | Role |
 |---|---|
 | Reda Alqatifi | SRS, Progect structure & arcticture, Frontend: welcome, home pages |
-| Hassan Almomatten | |
-| Mohammed Alkhalifa | |
-| Ahmed Koozi | |
-| Redwan Talib | |
+| Hassan Almomatten | Frontend: reports page |
+| Mohammed Alkhalifa | Frontend: sign-in form, register form, profile page |
+| Ahmed Kouzi | Frontend: exercises page |
+| Redwan Talib | Frontend: diet page |
 
 <br>
 
