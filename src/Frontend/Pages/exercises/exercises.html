@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fitness Tracker - Exercises</title>
+</head>
+<body>
+
+    <!-- Header with navigation -->
+    <header>
+        <img src="../../../../assets/images/FT logo.png"
+             alt="Fitness Tracker Logo"
+             width="120"
+             height="80"/>
+
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../reports/reports.html">Reports</a></li>
+                <li><a href="exercises.html">Exercises</a></li>
+                <li><a href="../diet/diet.html">Diet</a></li>
+                <li><a href="../profile/profile.html">Profile</a></li>
+                <li><a href="#">EN / AR</a></li>
+                <li><a href="../../Forms/login.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr/>
+
+    <!-- Main content -->
+    <section>
+
+        <h2>Exercises</h2>
+
+        <!-- Choice between recommended and custom -->
+        <p>
+            Choose a schedule:
+            <a href="#recommended">Recommended</a> |
+            <a href="#custom">Custom</a>
+        </p>
+
+        <!-- Recommended exercises -->
+        <article>
+            <header>
+                <h3 id="recommended">Recommended Exercises</h3>
+            </header>
+
+            <table border="1" cellpadding="5" cellspacing="0">
+                <caption>This Week's Recommended Exercises</caption>
+
+                <thead>
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Training Days</th>
+                        <th>Weight</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Bench Press</td>
+                        <td>Sunday, Wednesday</td>
+                        <td>20</td>
+                        <td>kg</td>
+                    </tr>
+
+                    <tr>
+                        <td>Squat</td>
+                        <td>Monday, Thursday</td>
+                        <td>30</td>
+                        <td>kg</td>
+                    </tr>
+
+                    <tr>
+                        <td>Deadlift</td>
+                        <td>Tuesday</td>
+                        <td>40</td>
+                        <td>kg</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <hr/>
+
+        <!-- Custom exercises -->
+        <article>
+            <header>
+                <h3 id="custom">Custom Exercises</h3>
+            </header>
+
+            <p>
+                These are the exercises <em>you</em> added yourself.
+            </p>
+
+            <table border="1" cellpadding="5" cellspacing="0">
+                <caption>My Exercises</caption>
+
+                <thead>
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Training Days</th>
+                        <th>Weight</th>
+                        <th>Unit</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Bicep Curl</td>
+                        <td>Sunday, Tuesday, Thursday</td>
+                        <td>10</td>
+                        <td>kg</td>
+                        <td>
+                            <button type="button">Edit</button>
+                            <button type="button">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <hr/>
+
+        <!-- Add / Edit Exercise Form -->
+        <article>
+            <header>
+                <h3>Add or Edit Exercise</h3>
+            </header>
+
+            <form action="#" method="post">
+
+                <!-- Exercise name -->
+                <p>
+                    <label for="exercise-name">Exercise Name:</label>
+                    <input
+                        type="text"
+                        id="exercise-name"
+                        name="exercise-name"
+                        required/>
+                </p>
+
+                <!-- Training days -->
+                <fieldset>
+                    <legend>Training Days</legend>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="training-days"
+                            value="sunday"/>
+                        Sunday
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="training-days"
+                            value="monday"/>
+                        Monday
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="training-days"
+                            value="tuesday"/>
+                        Tuesday
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="training-days"
+                            value="wednesday"/>
+                        Wednesday
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="training-days"
+                            value="thursday"/>
+                        Thursday
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="training-days"
+                            value="friday"/>
+                        Friday
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="training-days"
+                            value="saturday"/>
+                        Saturday
+                    </label>
+                </fieldset>
+
+                <!-- Weight -->
+                <p>
+                    <label for="weight">Weight:</label>
+                    <input
+                        type="number"
+                        id="weight"
+                        name="weight"
+                        min="0"
+                        step="0.1"
+                        required/>
+                </p>
+
+                <!-- Unit -->
+                <p>
+                    <label for="unit">Unit:</label>
+                    <select id="unit" name="unit">
+                        <option value="kg">kg</option>
+                        <option value="lb">lb</option>
+                    </select>
+                </p>
+
+                <!-- Form buttons -->
+                <p>
+                    <button type="submit">Save Exercise</button>
+                    <button type="reset">Clear Form</button>
+                </p>
+
+            </form>
+        </article>
+
+        <hr/>
+
+        <!-- Calories burned summary -->
+        <aside>
+            <h3>Calories Burned Today</h3>
+
+            <p>
+                <strong>~350</strong> kcal
+                (approximate, based on number of exercises)
+            </p>
+        </aside>
+
+    </section>
+
+    <hr/>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Group(1) - Fitness Tracker</p>
+
+        <ul>
+            <li>Reda Alqatifi</li>
+            <li>Hassan Almomatten</li>
+            <li>Mohammed Alkhalifah</li>
+            <li>Ahmed Koozi</li>
+            <li>Redwan Talib</li>
+        </ul>
+
+        <p>
+            <a href="#top">Back to Top</a>
+        </p>
+    </footer>
+
+</body>
+</html>
