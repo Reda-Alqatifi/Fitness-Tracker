@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only dark">
+    <title>Fitness Tracker</title>
+
+    <link rel="icon" type="image/png" href="../../../../assets/images/FT logo.png" />
+
+    <!--! Cinnecting with 'css'-->
+    <link rel="stylesheet" href="home.css" />
+    
+    <!--! to use some google symbols, like Home icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+</head>
+<body>
+    
+    <!-- !     H E A D E R     -->
+    <header id="#global-header">
+
+        <nav id="nav-bar">
+
+            <!-- for the wide image of the header, which is above the nav-bar -->
+            <div id="image-container"> 
+                <!-- content will be added using js, to be changed relative to the section
+                        if the section isn't Home -->
+            </div>
+
+            <img  class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+
+            <div id="sideMenu" class="side-menu">
+                <ul>
+                    <li><a href="../home/home.html" class="selected">
+                        <span class="material-symbols-outlined">home</span>
+                        <span>Home</span>
+                    </a></li>
+                    <li><a href="../reports/reports.html">Reports</a></li>
+                    <li><a href="exercises.html">Exercises</a></li>
+                    <li><a href="../diet/diet.html">Diet</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+
+                    <li><a href="#language">Language</a></li>
+                    <button id="logout-btn" class="btn">logout</button>
+                </ul>
+            </div>
+            
+        </nav>
+
+        <div id="language">
+            <ul>
+                <li><a id="en">English</a></li>
+                <li><a id="ar">Arabic</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ////////////////////////// -->
+    
+    <!-- !     M A I N     -->
+    <main id="home" class="active">
+
+        <section class="personal-info">
+            <div id="account-picture">
+                <span>FT</span>
+            </div>
+
+            <div id="info">
+                <div>
+                    <h2>Name: </h2><span id="name"></span>
+                </div>
+
+                <div>
+                    <h2>Weight: </h2><span id="weight"></span>
+                </div>
+
+                <div>
+                    <h2>BMI (Body Mass Index): </h2><span id="BMI"></span>
+                </div>
+                
+                <div>
+                    <h2>PBF (Percent Body Fat): </h2><span id="PBF"></span>
+                </div>
+
+                <div>
+                    <h2>SMM (Skeletal Muscle Mass): </h2><span id="SMM"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h1>Today exercises:</h1>
+
+            <div id="exercises-table"></div>
+        </section>
+    </main>
+
+    <!-- ////////////////////////// -->
+    
+    <!-- !     F O O T E R     -->
+    <footer id="#global-footer">
+        <div class="rights">
+            Copyrights © 2026 by <strong>Group (1)</strong>. All Rights Reserved.
+        </div>
+
+        <div class="group-memebers">
+
+            <h2>Group (1) Members:</h2>
+
+            <ul id="members-list">
+                <li>
+                    Reda Alqatifi
+                    <a href="https://github.com/Reda-Alqatifi" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/reda-alqatifi-a58515414/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Hassan Almomatten
+                    <a href="https://github.com/krbto" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Mohammed Alkhalifa
+                    <a href="https://github.com/stydex" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Ahmed Kouzi
+                    <a href="https://github.com/AhmedK64" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Redwan Talib
+                    <a href="https://github.com/redwanYtaleb" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </footer>
+
+    <!-- ////////////////////////////  -->
+
+    <!--! Cinnecting with 'js'-->
+    <script type="module" src="home.js"></script>
+</body>
+</html>
