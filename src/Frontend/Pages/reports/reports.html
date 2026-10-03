@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - Fitness Tracker</title>
+</head>
+<body>
+
+    <!-- Header & Export Section -->
+    <header>
+        <h1>User Activity & Progress Reports</h1>
+        <button type="button" id="exportPdfBtn" onclick="window.print()">Export to PDF</button>
+    </header>
+
+    <hr>
+
+    <!-- Timeframe Selection -->
+    <section>
+        <label for="timeframeSelect">Select Timeframe:</label>
+        <select id="timeframeSelect">
+            <option value="month">Last Month</option>
+            <option value="week">Last Week</option>
+            <option value="year">Last Year</option>
+            <option value="custom">Custom Period</option>
+        </select>
+    </section>
+
+    <hr>
+
+    <main>
+        <!-- 1. Today's Consumed vs Burned Calories -->
+        <section>
+            <h3>1. Today's Consumed vs. Burned Calories</h3>
+            <div>
+                <p>Consumed Calories: <span id="consumedCaloriesValue">--</span> kcal</p>
+                <p>Burned Calories: <span id="burnedCaloriesValue">--</span> kcal</p>
+            </div>
+            <!-- Canvas for JavaScript Chart -->
+            <canvas id="todayCaloriesCanvas" width="400" height="200" style="border:1px solid #ccc;"></canvas>
+        </section>
+
+        <hr>
+
+        <!-- 2. Daily Burned Calories Bar Chart -->
+        <section>
+            <h3>2. Daily Burned Calories</h3>
+            <!-- Canvas for JavaScript Bar Chart -->
+            <canvas id="dailyBurnedCanvas" width="500" height="250" style="border:1px solid #ccc;"></canvas>
+        </section>
+
+        <hr>
+
+        <!-- 3. Daily Steps Chart -->
+        <section>
+            <h3>3. Daily Steps Counter</h3>
+            <!-- Canvas for JavaScript Steps Chart -->
+            <canvas id="stepsCanvas" width="500" height="250" style="border:1px solid #ccc;"></canvas>
+        </section>
+
+        <hr>
+
+        <!-- 4. Weight Progress Line Chart -->
+        <section>
+            <h3>4. Weight Change Over Time</h3>
+            <!-- Canvas for JavaScript Line Chart -->
+            <canvas id="weightCanvas" width="500" height="250" style="border:1px solid #ccc;"></canvas>
+        </section>
+
+        <hr>
+
+        <!-- 5. Log History Table (Empty Body for Dynamic Data) -->
+        <section>
+            <h3>5. Historical Records Table</h3>
+            <table border="1" id="reportsDataTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Weight (kg)</th>
+                        <th>Consumed Calories (kcal)</th>
+                        <th>Burned Calories (kcal)</th>
+                        <th>Steps Count</th>
+                    </tr>
+                </thead>
+                <tbody id="reportsTableBody">
+                    <!-- JavaScript will insert dynamic rows here based on user data -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</body>
+</html>
