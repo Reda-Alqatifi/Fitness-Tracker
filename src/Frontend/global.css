@@ -1,0 +1,201 @@
+/* !for global variables */
+:root {
+    /* Here are some useful variables that can be used using the 'var()' function, to 
+       easily change the values if we want */
+
+    /*! Fonts */
+    /* if you want to use a different 'font-family' - rather than the default -
+        you shall put it here */
+ 
+    --font-type-1: Arial, sans-serif;
+ 
+    /* ////////////////// */
+ 
+    /*! Font Sizes */
+    --font-x-small: 0.6rem;     /* 9.6px */
+    --font-small: 1rem;         /* 16px */
+ 
+    --font-mid: 1.2rem;         /* 19.2px */
+ 
+    --font-large: 1.5rem;       /* 24px */
+    --font-x-large: 1.9rem;     /* 30.4px */
+    --font-2x-large: 2.5rem;    /* 40px */
+    --font-3x-large: 3rem;      /* 48px */
+    --font-4x-large: 4rem;      /* 64px */
+    --font-5x-large: 4.5rem;    /* 72px */
+
+    /* if you want to use another font-size , do not add a new variable,
+        just do it like this using the calc() function:
+            calc(var(--font-mid) * (number)) */
+ 
+    /* ////////////////// */
+ 
+    /*! Sizes */
+ 
+    --size-2x-small: 50px;
+    --size-x-small: 100px;
+    --size-small: 150px;
+ 
+    --size-mid: 250px;
+ 
+    --size-large: 350px;
+    --size-x-large: 450px;
+    --size-2x-large: 550px;
+    --size-3x-large: 650px;
+    --size-4x-large: 750px;
+ 
+    /* ////////////////// */
+ 
+    /*! Padding , Margin , Gap... */
+ 
+    --space-none: 0;
+ 
+    --space-x-small: 0.25rem;   /* 4px */
+    --space-small: 0.5rem;      /* 8px */
+ 
+    --space-mid: 1rem;          /* 16px */
+ 
+    --space-large: 1.5rem;      /* 24px */
+    --space-x-large: 2rem;      /* 32px */
+    --space-2x-large: 3rem;     /* 48px */
+    --space-3x-large: 4rem;     /* 64px */
+ 
+    /* ////////////////// */
+ 
+    /*! Color Palette */
+    /* do not use the 'Color Palette' directly, use the 'Colors' instead */
+ 
+    --palette-orange: rgb(255, 167, 0);
+    --palette-yellow: rgb(255, 242, 0);
+    --palette-blue: rgb(0, 58, 232);
+    --palette-green: rgb(0, 175, 0);
+    --palette-red: rgb(198, 0, 0);
+    --palette-navy: rgb(25, 29, 38);
+    --palette-gray-light: rgb(215, 220, 229);
+    --palette-white: white;
+    --palette-black: black;
+ 
+    /*! Colors */
+ 
+    --color-account-text: var(--palette-orange);
+    --color-account-border: var(--color-account-text);
+    --color-account-background: var(--palette-navy);
+ 
+    --color-navbar: var(--palette-white);
+    --color-navbar-2: var(--palette-blue);
+ 
+    --color-text: var(--palette-black);
+    --color-text-2: var(--palette-white);
+ 
+    --color-text-hover: var(--palette-orange);
+    --color-text-hover-2: var(--palette-yellow);
+ 
+    --color-text-selected: var(--color-text-hover);
+    --color-text-selected-2: var(--color-text-hover-2);
+ 
+    /* same color as hover, but with a low opacity */
+    --color-background-selected: color-mix(in srgb, var(--color-text-hover) var(--opacity-low), transparent);
+    --color-background-selected-2: color-mix(in srgb, var(--color-text-hover-2) var(--opacity-low), transparent);
+ 
+    --color-background: var(--palette-gray-light);
+ 
+    --color-cards: var(--palette-white);
+ 
+    --color-border: var(--palette-black);
+    --color-border-2: var(--palette-blue);
+    --color-border-3: var(--palette-white);
+ 
+    --color-graphs-1: var(--palette-orange);
+    --color-graphs-2: var(--palette-green);
+    --color-graphs-3: var(--palette-blue);
+ 
+    --color-button-1: var(--palette-red);
+    --color-button-2: var(--palette-green);
+ 
+    /* ////////////////// */
+ 
+    /*! Border */
+ 
+    --border-x-small: 1px;
+    --border-small: 2px;
+    --border-mid: 3px;
+    --border-large: 5px;
+    --border-x-large: 10px;
+ 
+    /*! Border Radius */
+ 
+    --radius-x-small: 0.25rem;  /* 4px */
+    --radius-small: 0.5rem;     /* 8px */
+ 
+    --radius-mid: 1rem;         /* 16px */
+ 
+    --radius-large: 1.5rem;     /* 24px */
+    --radius-x-large: 2rem;     /* 32px */
+    --radius-full: 9999px;      /* circle */
+ 
+    /* ////////////////// */
+ 
+    /*! Blur */
+ 
+    --blur-low: 16px;
+    --blur-mid: 50px;
+    --blur-high: 80px;
+ 
+    /* ////////////////// */
+ 
+    /*! Shadows */
+ 
+    --shadow-low-blur: 0 0 var(--blur-low);
+    --shadow-mid-blur: 0 0 var(--blur-mid);
+    --shadow-high-blur: 0 0 var(--blur-high);
+ 
+    /* ////////////////// */
+ 
+    /*! Opacity */
+ 
+    --opacity-low: 13%;
+    --opacity-mid: 54%;
+    --opacity-high: 80%;
+ 
+    /* ////////////////// */
+ 
+    /*! Layers (z-index) */
+ 
+    --z-dropdown: 100;
+    --z-popup: 200;
+ 
+    /* ////////////////// */
+ 
+    /*! Animation */
+ 
+    --transition-fast: 0.1s;
+    --transition-mid: 0.3s;
+    --transition-slow: 0.8s;
+}
+
+/* //////////////// */
+
+/* !for the account picture */
+#account-picture {
+    width: var(--size-small);
+    height: var(--size-small);
+
+    border-radius: var(--radius-full);
+
+    background-color: var(--color-account-background);
+    border: var(--border-large) solid var(--color-account-text);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+#account-picture span {
+    color: var(--color-account-text);
+    font-size: var(--font-5x-large);
+    font-weight: bold;
+    font-family: var(--font-type-1);
+    letter-spacing: calc(var(--border-large) * (-1));
+    font-style: italic;
+}
