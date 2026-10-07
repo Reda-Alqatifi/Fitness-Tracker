@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title data-i18n="register.pageTitle">Fitness Tracker - Create Account</title>
+    <link rel="stylesheet" href="Form.css"/>
+</head>
+<body>
+
+    <!-- Header: same links as the welcome page -->
+    <header>
+        <img src="../../../../assets/images/FT logo.png"
+             alt="Fitness Tracker Logo"
+             width="120"
+             height="80"/>
+
+        <nav>
+            <ul>
+                <li><a href="../welcome/welcome.html#features" data-i18n="nav.features">Features</a></li>
+                <li><a href="../welcome/welcome.html#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#language" data-i18n="nav.language">Language</a></li>
+            </ul>
+        </nav>
+
+        <div id="language">
+            <ul>
+                <li><a id="en" data-i18n="nav.english">English</a></li>
+                <li><a id="ar" data-i18n="nav.arabic">Arabic</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <hr/>
+
+    <!-- Main content -->
+    <section>
+
+        <h2 data-i18n="register.title">Create Account</h2>
+
+        <p data-i18n="register.intro">
+            Create your account to start tracking your fitness.
+        </p>
+
+        <!-- Register form, then go to the setup form (UR-01) -->
+        <form action="setup.html" method="post">
+
+            <!-- Name -->
+            <p>
+                <label for="name" data-i18n="register.name">Name:</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    minlength="2"
+                    maxlength="50"
+                    required/>
+            </p>
+
+            <!-- Email -->
+            <p>
+                <label for="email" data-i18n="register.email">Email:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required/>
+            </p>
+
+            <!-- Password -->
+            <p>
+                <label for="password" data-i18n="register.password">Password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    minlength="8"
+                    required/>
+                <small data-i18n="register.passwordHint">At least 8 characters.</small>
+            </p>
+
+            <!-- Password confirmation -->
+            <p>
+                <label for="confirm-password" data-i18n="register.confirmPassword">Confirm Password:</label>
+                <input
+                    type="password"
+                    id="confirm-password"
+                    name="confirm-password"
+                    minlength="8"
+                    required/>
+            </p>
+
+            <!-- Form buttons -->
+            <p>
+                <button type="submit" data-i18n="register.submit">Create Account</button>
+                <button type="reset" data-i18n="register.clear">Clear Form</button>
+            </p>
+
+        </form>
+
+        <!-- Link back to the sign-in form -->
+        <p>
+            <span data-i18n="register.haveAccount">Already have an account?</span>
+            <a href="login.html" data-i18n="register.signIn">Sign in</a>
+        </p>
+
+    </section>
+
+    <hr/>
+
+    <!-- Footer -->
+    <footer>
+        <p data-i18n="footer.rights">&copy; Group(1) - Fitness Tracker</p>
+
+        <ul>
+            <li data-i18n="footer.reda">Reda Alqatifi</li>
+            <li data-i18n="footer.hassan">Hassan Almomatten</li>
+            <li data-i18n="footer.mohammed">Mohammed Alkhalifah</li>
+            <li data-i18n="footer.ahmed">Ahmed Koozi</li>
+            <li data-i18n="footer.redwan">Redwan Talib</li>
+        </ul>
+
+        <p>
+            <a href="#top" data-i18n="footer.backToTop">Back to Top</a>
+        </p>
+    </footer>
+
+</body>
+</html>

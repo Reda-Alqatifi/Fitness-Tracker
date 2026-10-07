@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title data-i18n="profile.pageTitle">Fitness Tracker - Profile</title>
+    <link rel="stylesheet" href="profile.css"/>
+</head>
+<body>
+
+    <!-- Header with navigation -->
+    <header>
+        <img src="../../../../assets/images/FT logo.png"
+             alt="Fitness Tracker Logo"
+             width="120"
+             height="80"/>
+
+        <nav>
+            <ul>
+                <li><a href="../home/home.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="../reports/reports.html" data-i18n="nav.reports">Reports</a></li>
+                <li><a href="../exercises/exercises.html" data-i18n="nav.exercises">Exercises</a></li>
+                <li><a href="../diet/diet.html" data-i18n="nav.diet">Diet</a></li>
+                <li><a href="profile.html" data-i18n="nav.profile">Profile</a></li>
+                <li><a href="#" data-i18n="nav.language">EN / AR</a></li>
+                <li><a href="../Forms/login.html" data-i18n="nav.logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr/>
+
+    <!-- Main content -->
+    <section>
+
+        <h2 data-i18n="profile.title">Profile</h2>
+
+        <!-- Links to each part of the page -->
+        <p>
+            <span data-i18n="profile.goTo">Go to:</span>
+            <a href="#my-info" data-i18n="profile.myInfo">My Information</a> |
+            <a href="#edit-info" data-i18n="profile.editInfo">Edit Information</a> |
+            <a href="#change-password" data-i18n="profile.changePassword">Change Password</a> |
+            <a href="#delete-account" data-i18n="profile.deleteAccount">Delete Account</a>
+        </p>
+
+        <!-- Account picture and information (UR-22, UR-23) -->
+        <article>
+            <header>
+                <h3 id="my-info" data-i18n="profile.myInfo">My Information</h3>
+            </header>
+
+            <!-- Static account picture, same as the home page -->
+            <div id="account-picture">
+                <span data-i18n="profile.picture">FT</span>
+            </div>
+
+            <table border="1" cellpadding="5" cellspacing="0">
+                <caption data-i18n="profile.infoCaption">Personal Information</caption>
+
+                <thead>
+                    <tr>
+                        <th data-i18n="profile.detail">Detail</th>
+                        <th data-i18n="profile.value">Value</th>
+                    </tr>
+                </thead>
+
+                <!-- Values are empty: they will be filled with the signed-in user's data later -->
+                <tbody>
+                    <tr>
+                        <td data-i18n="profile.name">Name</td>
+                        <td id="name"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.gender">Gender</td>
+                        <td id="gender"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.age">Age (years)</td>
+                        <td id="age"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.height">Height (cm)</td>
+                        <td id="height"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.weight">Weight (kg)</td>
+                        <td id="weight"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.targetWeight">Target Weight (kg)</td>
+                        <td id="target-weight"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.goal">Goal</td>
+                        <td id="goal"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.activity">Activity Level</td>
+                        <td id="activity"></td>
+                    </tr>
+
+                    <tr>
+                        <td data-i18n="profile.created">Account Created</td>
+                        <td id="created"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <hr/>
+
+        <!-- Edit information form (UR-22) -->
+        <article>
+            <header>
+                <h3 id="edit-info" data-i18n="profile.editInfo">Edit Information</h3>
+            </header>
+
+            <form action="#my-info" method="post">
+
+                <!-- Name -->
+                <p>
+                    <label for="edit-name" data-i18n="profile.editName">Name:</label>
+                    <input
+                        type="text"
+                        id="edit-name"
+                        name="name"
+                        minlength="2"
+                        maxlength="50"
+                        required/>
+                </p>
+
+                <!-- Gender -->
+                <fieldset>
+                    <legend data-i18n="profile.gender">Gender</legend>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="male"
+                            required/>
+                        <span data-i18n="gender.male">Male</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="female"/>
+                        <span data-i18n="gender.female">Female</span>
+                    </label>
+                </fieldset>
+
+                <!-- Age -->
+                <p>
+                    <label for="edit-age" data-i18n="profile.editAge">Age (years):</label>
+                    <input
+                        type="number"
+                        id="edit-age"
+                        name="age"
+                        min="10"
+                        max="100"
+                        step="1"
+                        required/>
+                </p>
+
+                <!-- Height -->
+                <p>
+                    <label for="edit-height" data-i18n="profile.editHeight">Height (cm):</label>
+                    <input
+                        type="number"
+                        id="edit-height"
+                        name="height"
+                        min="50"
+                        max="250"
+                        step="1"
+                        required/>
+                </p>
+
+                <!-- Weight -->
+                <p>
+                    <label for="edit-weight" data-i18n="profile.editWeight">Weight (kg):</label>
+                    <input
+                        type="number"
+                        id="edit-weight"
+                        name="weight"
+                        min="20"
+                        max="300"
+                        step="0.1"
+                        required/>
+                </p>
+
+                <!-- Target weight -->
+                <p>
+                    <label for="edit-target-weight" data-i18n="profile.editTargetWeight">Target Weight (kg):</label>
+                    <input
+                        type="number"
+                        id="edit-target-weight"
+                        name="target-weight"
+                        min="20"
+                        max="300"
+                        step="0.1"
+                        required/>
+                </p>
+
+                <!-- Goal -->
+                <fieldset>
+                    <legend data-i18n="profile.goal">Goal</legend>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="goal"
+                            value="lose"
+                            required/>
+                        <span data-i18n="goal.lose">Lose weight</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="goal"
+                            value="gain"/>
+                        <span data-i18n="goal.gain">Gain weight</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="goal"
+                            value="maintain"/>
+                        <span data-i18n="goal.maintain">Maintain weight</span>
+                    </label>
+                </fieldset>
+
+                <!-- Activity level -->
+                <p>
+                    <label for="edit-activity" data-i18n="profile.editActivity">Activity Level:</label>
+                    <select id="edit-activity" name="activity" required>
+                        <option value="" data-i18n="activity.choose">-- Choose --</option>
+                        <option value="sedentary" data-i18n="activity.sedentary">Sedentary (little or no exercise)</option>
+                        <option value="light" data-i18n="activity.light">Lightly active (1-3 days a week)</option>
+                        <option value="moderate" data-i18n="activity.moderate">Moderately active (3-5 days a week)</option>
+                        <option value="very" data-i18n="activity.very">Very active (6-7 days a week)</option>
+                    </select>
+                </p>
+
+                <!-- Form buttons -->
+                <p>
+                    <button type="submit" data-i18n="profile.save">Save Changes</button>
+                    <button type="reset" data-i18n="profile.undo">Undo Changes</button>
+                </p>
+
+            </form>
+        </article>
+
+        <hr/>
+
+        <!-- Change password form (UR-24) -->
+        <article>
+            <header>
+                <h3 id="change-password" data-i18n="profile.changePassword">Change Password</h3>
+            </header>
+
+            <form action="#my-info" method="post">
+
+                <!-- Old password -->
+                <p>
+                    <label for="old-password" data-i18n="profile.oldPassword">Old Password:</label>
+                    <input
+                        type="password"
+                        id="old-password"
+                        name="old-password"
+                        required/>
+                </p>
+
+                <!-- New password -->
+                <p>
+                    <label for="new-password" data-i18n="profile.newPassword">New Password:</label>
+                    <input
+                        type="password"
+                        id="new-password"
+                        name="new-password"
+                        minlength="8"
+                        required/>
+                    <small data-i18n="profile.passwordHint">At least 8 characters.</small>
+                </p>
+
+                <!-- New password confirmation -->
+                <p>
+                    <label for="confirm-new-password" data-i18n="profile.confirmNewPassword">Confirm New Password:</label>
+                    <input
+                        type="password"
+                        id="confirm-new-password"
+                        name="confirm-new-password"
+                        minlength="8"
+                        required/>
+                </p>
+
+                <!-- Form buttons -->
+                <p>
+                    <button type="submit" data-i18n="profile.changePassword">Change Password</button>
+                    <button type="reset" data-i18n="profile.clear">Clear Form</button>
+                </p>
+
+            </form>
+        </article>
+
+        <hr/>
+
+        <!-- Delete account form (UR-25) -->
+        <article>
+            <header>
+                <h3 id="delete-account" data-i18n="profile.deleteAccount">Delete Account</h3>
+            </header>
+
+            <p>
+                <strong data-i18n="profile.warning">Warning:</strong>
+                <span data-i18n="profile.deleteWarning">
+                    Deleting your account removes all your data. This cannot be undone.
+                </span>
+            </p>
+
+            <form action="../welcome/welcome.html" method="post">
+
+                <!-- Email -->
+                <p>
+                    <label for="delete-email" data-i18n="profile.email">Email:</label>
+                    <input
+                        type="email"
+                        id="delete-email"
+                        name="email"
+                        required/>
+                </p>
+
+                <!-- Password -->
+                <p>
+                    <label for="delete-password" data-i18n="profile.password">Password:</label>
+                    <input
+                        type="password"
+                        id="delete-password"
+                        name="password"
+                        required/>
+                </p>
+
+                <!-- Password confirmation -->
+                <p>
+                    <label for="delete-confirm-password" data-i18n="profile.confirmPassword">Confirm Password:</label>
+                    <input
+                        type="password"
+                        id="delete-confirm-password"
+                        name="confirm-password"
+                        required/>
+                </p>
+
+                <!-- "Are you sure?" step: Delete will not work until this is checked -->
+                <p>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="sure"
+                            value="yes"
+                            required/>
+                        <span data-i18n="profile.deleteSure">Yes, I am sure I want to delete my account.</span>
+                    </label>
+                </p>
+
+                <!-- Form buttons -->
+                <p>
+                    <button type="submit" data-i18n="profile.delete">Delete</button>
+                    <button type="reset" data-i18n="profile.cancel">Cancel</button>
+                </p>
+
+            </form>
+        </article>
+
+    </section>
+
+    <hr/>
+
+    <!-- Footer -->
+    <footer>
+        <p data-i18n="footer.rights">&copy; Group(1) - Fitness Tracker</p>
+
+        <ul>
+            <li data-i18n="footer.reda">Reda Alqatifi</li>
+            <li data-i18n="footer.hassan">Hassan Almomatten</li>
+            <li data-i18n="footer.mohammed">Mohammed Alkhalifah</li>
+            <li data-i18n="footer.ahmed">Ahmed Koozi</li>
+            <li data-i18n="footer.redwan">Redwan Talib</li>
+        </ul>
+
+        <p>
+            <a href="#top" data-i18n="footer.backToTop">Back to Top</a>
+        </p>
+    </footer>
+
+</body>
+</html>

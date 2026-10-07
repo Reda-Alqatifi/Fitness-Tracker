@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title data-i18n="setup.pageTitle">Fitness Tracker - Set Up Profile</title>
+    <link rel="stylesheet" href="Form.css"/>
+</head>
+<body>
+
+    <!-- Header: same links as the welcome page -->
+    <header>
+        <img src="../../../../assets/images/FT logo.png"
+             alt="Fitness Tracker Logo"
+             width="120"
+             height="80"/>
+
+        <nav>
+            <ul>
+                <li><a href="../welcome/welcome.html#features" data-i18n="nav.features">Features</a></li>
+                <li><a href="../welcome/welcome.html#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#language" data-i18n="nav.language">Language</a></li>
+            </ul>
+        </nav>
+
+        <div id="language">
+            <ul>
+                <li><a id="en" data-i18n="nav.english">English</a></li>
+                <li><a id="ar" data-i18n="nav.arabic">Arabic</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <hr/>
+
+    <!-- Main content -->
+    <section>
+
+        <h2 data-i18n="setup.title">Set Up Your Profile</h2>
+
+        <p data-i18n="setup.intro">
+            Tell us about your body so we can build your plan.
+            You only need to do this once.
+        </p>
+
+        <!-- Setup profile form, then go to the home page (UR-02) -->
+        <form action="../home/home.html" method="post">
+
+            <!-- Birthdate -->
+            <p>
+                <label for="birthdate" data-i18n="setup.birthdate">Birthdate:</label>
+                <input
+                    type="date"
+                    id="birthdate"
+                    name="birthdate"
+                    min="1926-01-01"
+                    max="2016-12-31"
+                    required/>
+            </p>
+
+            <!-- Height -->
+            <p>
+                <label for="height" data-i18n="setup.height">Height (cm):</label>
+                <input
+                    type="number"
+                    id="height"
+                    name="height"
+                    min="50"
+                    max="250"
+                    step="1"
+                    required/>
+            </p>
+
+            <!-- Weight -->
+            <p>
+                <label for="weight" data-i18n="setup.weight">Weight (kg):</label>
+                <input
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    min="20"
+                    max="300"
+                    step="0.1"
+                    required/>
+            </p>
+
+            <!-- Gender -->
+            <fieldset>
+                <legend data-i18n="setup.gender">Gender</legend>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="male"
+                        required/>
+                    <span data-i18n="gender.male">Male</span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="female"/>
+                    <span data-i18n="gender.female">Female</span>
+                </label>
+            </fieldset>
+
+            <!-- Goal -->
+            <fieldset>
+                <legend data-i18n="setup.goal">Goal</legend>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="goal"
+                        value="lose"
+                        required/>
+                    <span data-i18n="goal.lose">Lose weight</span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="goal"
+                        value="gain"/>
+                    <span data-i18n="goal.gain">Gain weight</span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="goal"
+                        value="maintain"/>
+                    <span data-i18n="goal.maintain">Maintain weight</span>
+                </label>
+            </fieldset>
+
+            <!-- Activity level -->
+            <p>
+                <label for="activity" data-i18n="setup.activity">Activity Level:</label>
+                <select id="activity" name="activity" required>
+                    <option value="" data-i18n="activity.choose">-- Choose --</option>
+                    <option value="sedentary" data-i18n="activity.sedentary">Sedentary (little or no exercise)</option>
+                    <option value="light" data-i18n="activity.light">Lightly active (1-3 days a week)</option>
+                    <option value="moderate" data-i18n="activity.moderate">Moderately active (3-5 days a week)</option>
+                    <option value="very" data-i18n="activity.very">Very active (6-7 days a week)</option>
+                </select>
+            </p>
+
+            <!-- Form buttons -->
+            <p>
+                <button type="submit" data-i18n="setup.submit">Save and Continue</button>
+                <button type="reset" data-i18n="setup.clear">Clear Form</button>
+            </p>
+
+        </form>
+
+    </section>
+
+    <hr/>
+
+    <!-- Footer -->
+    <footer>
+        <p data-i18n="footer.rights">&copy; Group(1) - Fitness Tracker</p>
+
+        <ul>
+            <li data-i18n="footer.reda">Reda Alqatifi</li>
+            <li data-i18n="footer.hassan">Hassan Almomatten</li>
+            <li data-i18n="footer.mohammed">Mohammed Alkhalifah</li>
+            <li data-i18n="footer.ahmed">Ahmed Koozi</li>
+            <li data-i18n="footer.redwan">Redwan Talib</li>
+        </ul>
+
+        <p>
+            <a href="#top" data-i18n="footer.backToTop">Back to Top</a>
+        </p>
+    </footer>
+
+</body>
+</html>

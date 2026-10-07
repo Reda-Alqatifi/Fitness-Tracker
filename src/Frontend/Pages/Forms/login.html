@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title data-i18n="login.pageTitle">Fitness Tracker - Sign In</title>
+    <link rel="stylesheet" href="Form.css"/>
+</head>
+<body>
+
+    <!-- Header: same links as the welcome page -->
+    <header>
+        <img src="../../../../assets/images/FT logo.png"
+             alt="Fitness Tracker Logo"
+             width="120"
+             height="80"/>
+
+        <nav>
+            <ul>
+                <li><a href="../welcome/welcome.html#features" data-i18n="nav.features">Features</a></li>
+                <li><a href="../welcome/welcome.html#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#language" data-i18n="nav.language">Language</a></li>
+            </ul>
+        </nav>
+
+        <div id="language">
+            <ul>
+                <li><a id="en" data-i18n="nav.english">English</a></li>
+                <li><a id="ar" data-i18n="nav.arabic">Arabic</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <hr/>
+
+    <!-- Main content -->
+    <section>
+
+        <h2 data-i18n="login.title">Sign In</h2>
+
+        <p data-i18n="login.intro">
+            Welcome back! Enter your email and password to continue.
+        </p>
+
+        <!-- Sign-in form (UR-03) -->
+        <form action="../home/home.html" method="post">
+
+            <!-- Email -->
+            <p>
+                <label for="email" data-i18n="login.email">Email:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required/>
+            </p>
+
+            <!-- Password -->
+            <p>
+                <label for="password" data-i18n="login.password">Password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required/>
+            </p>
+
+            <!-- Remember me -->
+            <p>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="remember"
+                        value="yes"/>
+                    <span data-i18n="login.remember">Remember me</span>
+                </label>
+            </p>
+
+            <!-- Form button -->
+            <p>
+                <button type="submit" data-i18n="login.submit">Sign In</button>
+            </p>
+
+        </form>
+
+        <!-- Link to the register form -->
+        <p>
+            <span data-i18n="login.noAccount">Don't have an account?</span>
+            <a href="register.html" data-i18n="login.createNow">Create now</a>
+        </p>
+
+    </section>
+
+    <hr/>
+
+    <!-- Footer -->
+    <footer>
+        <p data-i18n="footer.rights">&copy; Group(1) - Fitness Tracker</p>
+
+        <ul>
+            <li data-i18n="footer.reda">Reda Alqatifi</li>
+            <li data-i18n="footer.hassan">Hassan Almomatten</li>
+            <li data-i18n="footer.mohammed">Mohammed Alkhalifah</li>
+            <li data-i18n="footer.ahmed">Ahmed Koozi</li>
+            <li data-i18n="footer.redwan">Redwan Talib</li>
+        </ul>
+
+        <p>
+            <a href="#top" data-i18n="footer.backToTop">Back to Top</a>
+        </p>
+    </footer>
+
+</body>
+</html>
