@@ -1,3 +1,6 @@
+@import url("navbar.css");
+@import url("footer.css");
+
 /* !for global variables */
 :root {
     /* Here are some useful variables that can be used using the 'var()' function, to 
@@ -77,6 +80,8 @@
  
     /*! Colors */
  
+    --color-background: var(--palette-gray-light);
+
     --color-account-text: var(--palette-orange);
     --color-account-border: var(--color-account-text);
     --color-account-background: var(--palette-navy);
@@ -97,13 +102,11 @@
     --color-background-selected: color-mix(in srgb, var(--color-text-hover) var(--opacity-low), transparent);
     --color-background-selected-2: color-mix(in srgb, var(--color-text-hover-2) var(--opacity-low), transparent);
  
-    --color-background: var(--palette-gray-light);
- 
     --color-cards: var(--palette-white);
  
     --color-border: var(--palette-black);
     --color-border-2: var(--palette-blue);
-    --color-border-3: var(--palette-white);
+    --color-border-3: var(--palette-orange);
  
     --color-graphs-1: var(--palette-orange);
     --color-graphs-2: var(--palette-green);
@@ -111,6 +114,9 @@
  
     --color-button-1: var(--palette-red);
     --color-button-2: var(--palette-green);
+    --color-button-3: var(--palette-gray-light);
+
+    --color-shadow: var(--color-account-background);
  
     /* ////////////////// */
  
@@ -148,7 +154,7 @@
     --shadow-low-blur: 0 0 var(--blur-low);
     --shadow-mid-blur: 0 0 var(--blur-mid);
     --shadow-high-blur: 0 0 var(--blur-high);
- 
+
     /* ////////////////// */
  
     /*! Opacity */
@@ -161,6 +167,8 @@
  
     /*! Layers (z-index) */
  
+    --z-navbar: 10;
+    --z-sidemenu: 50;
     --z-dropdown: 100;
     --z-popup: 200;
  
@@ -171,6 +179,72 @@
     --transition-fast: 0.1s;
     --transition-mid: 0.3s;
     --transition-slow: 0.8s;
+}
+
+/* ////////////// */
+
+* { 
+    box-sizing: border-box; 
+}
+html,body {
+    min-height: 100%;
+}
+body {
+    color: var(--color-text);
+    background-color: var(--color-background);
+
+    margin: 0;
+
+    min-height: 99.9vh;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    
+    justify-self: center;
+
+    letter-spacing: 5%;
+}
+main {
+    flex: 1;
+    margin: 0 var(--space-large);
+}
+
+/* //////////////// */
+
+/* ! for the theme-switch (Dark / Light) */
+.darkmode {
+    /*! Color Palette */
+    /* do not use the 'Color Palette' directly, use the 'Colors' instead */
+ 
+    --palette-dark-bluish-gray: rgb(35, 38, 42);
+ 
+    /*! Colors */
+ 
+    --color-background: var(--palette-dark-bluish-gray);
+ 
+    --color-navbar: var(--palette-black);
+ 
+    --color-text: var(--palette-white);
+    --color-text-2: var(--palette-black);
+ 
+    --color-cards: var(--palette-black);
+ 
+    --color-border: var(--palette-white);
+ 
+    --color-button-3: var(--palette-dark-bluish-gray);
+}
+
+/* //////////////// */
+
+/* !for the buttons */
+.btn {
+    cursor: pointer;
+    border: none;
+    font-size: var(--font-mid);
+}
+.btn:hover {
+    box-shadow: var(--shadow-low-blur) var(--color-text-hover);
 }
 
 /* //////////////// */
@@ -188,14 +262,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    box-sizing: border-box;
 }
 #account-picture span {
-    color: var(--color-account-text);
-    font-size: var(--font-5x-large);
-    font-weight: bold;
     font-family: var(--font-type-1);
+    font-size: var(--font-5x-large);
+
+    font-style: normal;
+    font-weight: bold;
+
+    color: var(--color-account-text);
+
     letter-spacing: calc(var(--border-large) * (-1));
-    font-style: italic;
 }

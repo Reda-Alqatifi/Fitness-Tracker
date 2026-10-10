@@ -17,42 +17,34 @@
 <body>
     
     <!-- !     H E A D E R     -->
-    <header id="#global-header">
+    <header id="global-header">
 
         <nav id="nav-bar">
 
-            <!-- for the wide image of the header, which is above the nav-bar -->
-            <div id="image-container"> 
-                <!-- content will be added using js, to be changed relative to the section
-                        if the section isn't Home -->
-            </div>
-
-            <img  class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+            <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
 
             <div id="sideMenu" class="side-menu">
                 <ul>
                     <li><a href="../home/home.html" class="selected">
                         <span class="material-symbols-outlined">home</span>
-                        <span>Home</span>
+                        Home
                     </a></li>
                     <li><a href="../reports/reports.html">Reports</a></li>
-                    <li><a href="exercises.html">Exercises</a></li>
+                    <li><a href="../exercises/exercises.html">Exercises</a></li>
                     <li><a href="../diet/diet.html">Diet</a></li>
                     <li><a href="../profile/profile.html">Profile</a></li>
-
-                    <li><a href="#language">&#x25BE;Language</a></li>
-                    <button id="logout-btn" class="btn">logout</button>
                 </ul>
-            </div>
-            
-        </nav>
 
-        <div id="language">
-            <ul>
-                <li><a id="en">English</a></li>
-                <li><a id="ar">Arabic</a></li>
-            </ul>
-        </div>
+                <div class="buttons">
+                    <button id="logout-btn" class="btn">logout</button>
+
+                    <button id="theme-switch" class="btn">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!-- ////////////////////////// -->
@@ -98,12 +90,19 @@
     <!-- ////////////////////////// -->
     
     <!-- !     F O O T E R     -->
-    <footer id="#global-footer">
+    <footer id="global-footer">
         <div class="rights">
-            Copyrights © 2026 by <strong>Group (1)</strong>. All Rights Reserved.
+            <span>Copyrights © 2026 by </span>
+            <button id="members-btn">Group (1)</button>
+            <span>. All Rights Reserved.</span>
         </div>
 
-        <div class="group-memebers">
+        <!-- the popup, opened when clicking on "Group (1)" (the js is in main.js) -->
+        <dialog id="members-popup" class="group-memebers">
+
+            <button id="members-close-btn" type="button" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
 
             <h2>Group (1) Members:</h2>
 
@@ -122,7 +121,7 @@
                     <a href="https://github.com/krbto" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/hassan-eyad-333465357/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
@@ -131,7 +130,7 @@
                     <a href="https://github.com/stydex" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/mohammed-al-khalifa-3a5635335/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
@@ -140,7 +139,7 @@
                     <a href="https://github.com/AhmedK64" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/ahmed-kouzi-969915344/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
@@ -149,12 +148,12 @@
                     <a href="https://github.com/redwanYtaleb" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/redwanytaleb/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
             </ul>
-        </div>
+        </dialog>
 
     </footer>
 
