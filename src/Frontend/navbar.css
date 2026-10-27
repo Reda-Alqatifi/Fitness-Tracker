@@ -128,3 +128,64 @@
     border-radius: var(--radius-mid);
     padding: 0 var(--space-mid);
 }
+
+/* ////////////// */
+
+/* the logout popup */
+#global-header #logout-popup {
+    --color-text: var(--palette-white);
+
+    font-family: var(--font-type-1);
+    color: var(--color-text);
+    background-color: var(--color-account-background);
+
+    padding: var(--space-x-large);
+
+    border: var(--border-mid) solid var(--color-account-border);
+    border-radius: var(--radius-mid);
+
+    box-shadow: var(--shadow-low-blur) var(--color-shadow);
+}
+/* only when the popup is open */
+#global-header #logout-popup[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-large);
+}
+#global-header #logout-popup h2 {
+    margin: var(--space-none);
+    font-size: var(--font-mid);
+}
+
+/* the dark background behind the popup */
+#global-header #logout-popup::backdrop {
+    background-color: color-mix(in srgb, var(--palette-black) var(--opacity-mid), transparent);
+}
+
+#global-header #logout-popup .popup-buttons {
+    display: flex;
+    gap: var(--space-mid);
+}
+#global-header #logout-popup .popup-buttons .btn {
+    font-weight: bold;
+    color: var(--palette-white);
+
+    height: calc(var(--size-2x-small) * 0.7);
+    min-width: var(--size-2x-small);
+
+    border-radius: var(--radius-mid);
+    padding: 0 var(--space-mid);
+
+    cursor: pointer;
+}
+#global-header #logout-yes-btn {
+    background-color: var(--color-button-1);
+}
+#global-header #logout-no-btn {
+    background-color: var(--color-button-2);
+}
+#global-header #logout-popup .popup-buttons .btn:hover {
+    opacity: var(--opacity-high);
+    transition: var(--transition-fast);
+}

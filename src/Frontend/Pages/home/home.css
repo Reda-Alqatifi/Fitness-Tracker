@@ -1,1 +1,183 @@
 @import url("../../global.css");
+
+main {
+    font-family: var(--font-type-1);
+}
+
+/* !page container */
+#home {
+    width: 100%;
+    max-width: calc(var(--size-4x-large) + var(--size-large));   /* 1100px */
+    margin: var(--space-x-large) auto;
+    padding: 0 var(--space-mid);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-mid);
+}
+
+/* //////////////// */
+
+/* !cards */
+.card {
+    background-color: var(--color-cards);
+    border-radius: var(--radius-mid);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+
+    padding: var(--space-large);
+}
+.card h2 {
+    margin: 0;
+    font-size: var(--font-mid);
+}
+.muted {
+    opacity: 0.6;
+}
+
+/* //////////////// */
+
+/* !welcome card */
+.welcome {
+    display: flex;
+    align-items: center;
+    gap: var(--space-large);
+}
+.welcome #account-picture {
+    width: calc(var(--size-x-small) * 1.1);
+    height: calc(var(--size-x-small) * 1.1);
+    flex-shrink: 0;
+}
+.welcome #account-picture span {
+    font-size: var(--font-3x-large);
+}
+.welcome h1 {
+    margin: 0;
+    font-size: var(--font-2x-large);
+}
+.welcome p {
+    margin: var(--space-small) 0 0;
+    font-size: var(--font-small);
+}
+
+/* //////////////// */
+
+/* !body stats */
+#info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-mid);
+}
+.stat {
+    padding: var(--space-mid) var(--space-large);
+}
+.stat h2 {
+    font-size: calc(var(--font-small) * 0.9);
+    font-weight: normal;
+    opacity: 0.6;
+
+    margin-bottom: var(--space-small);
+}
+.stat span {
+    font-size: var(--font-large);
+    font-weight: bold;
+}
+
+/* //////////////// */
+
+/* !two columns (exercises / calories) */
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-mid);
+}
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: var(--space-mid);
+}
+
+/* !buttons */
+.btn-outline,
+.btn-primary {
+    display: inline-block;
+    text-decoration: none;
+    font-size: var(--font-small);
+
+    padding: var(--space-small) var(--space-mid);
+    border-radius: var(--radius-small);
+}
+.btn-outline {
+    color: var(--color-text);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+}
+.btn-primary {
+    color: var(--palette-white);
+    background-color: var(--color-graphs-1);
+    font-weight: bold;
+
+    align-self: flex-start;
+    margin-top: var(--space-mid);
+}
+
+/* //////////////// */
+
+/* !exercises table */
+#exercises-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-small);
+}
+#exercises-table th,
+#exercises-table td {
+    text-align: left;
+    padding: var(--space-mid) var(--space-small);
+    border-bottom: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+}
+#exercises-table th {
+    font-weight: normal;
+    font-size: calc(var(--font-small) * 0.9);
+    opacity: 0.6;
+    padding-top: 0;
+}
+#exercises-table .empty-row td {
+    text-align: center;
+    opacity: 0.6;
+}
+
+/* //////////////// */
+
+/* !calories */
+.calories {
+    display: flex;
+    flex-direction: column;
+}
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-small);
+
+    margin-bottom: var(--space-small);
+}
+.progress {
+    height: 10px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-button-3);
+    overflow: hidden;
+
+    margin-bottom: var(--space-mid);
+}
+.progress-fill {
+    width: 0;
+    height: 100%;
+    transition: width var(--transition-slow);
+    border-radius: var(--radius-full);
+}
+.progress-fill.consumed {
+    background-color: var(--color-graphs-1);
+}
+.progress-fill.burned {
+    background-color: var(--color-graphs-2);
+}
+

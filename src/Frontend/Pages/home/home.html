@@ -45,6 +45,17 @@
                 </div>
             </div>
         </nav>
+
+        <!-- ! the logout popup -->
+        <dialog id="logout-popup">
+
+            <h2>Are you sure you want to logout?</h2>
+
+            <div class="popup-buttons">
+                <button id="logout-yes-btn" class="btn" type="button">Yes</button>
+                <button id="logout-no-btn" class="btn" type="button">No</button>
+            </div>
+        </dialog>
     </header>
 
     <!-- ////////////////////////// -->
@@ -52,39 +63,97 @@
     <!-- !     M A I N     -->
     <main id="home" class="active">
 
-        <section class="personal-info">
+        <!-- welcome card -->
+        <section class="card welcome">
             <div id="account-picture">
                 <span>FT</span>
             </div>
 
-            <div id="info">
-                <div>
-                    <h2>Name: </h2><span id="name"></span>
-                </div>
-
-                <div>
-                    <h2>Weight: </h2><span id="weight"></span>
-                </div>
-
-                <div>
-                    <h2>BMI (Body Mass Index): </h2><span id="BMI"></span>
-                </div>
-                
-                <div>
-                    <h2>PBF (Percent Body Fat): </h2><span id="PBF"></span>
-                </div>
-
-                <div>
-                    <h2>SMM (Skeletal Muscle Mass): </h2><span id="SMM"></span>
-                </div>
+            <div>
+                <h1>Welcome back, <span id="name"></span></h1>
+                <p class="muted">Here is your fitness summary for today.</p>
             </div>
         </section>
 
-        <section class="exercises">
-            <h1>Today exercises:</h1>
+        <!-- body stats (filled by home.js from the backend) -->
+        <section id="info">
+            <div class="card stat" title="Weight">
+                <h2>Weight</h2>
+                <span id="weight">--</span>
+                <span class="unit" id="weight-unit">kg</span>
+            </div>
 
-            <div id="exercises-table"></div>
+            <div class="card stat" title="Body Mass Index">
+                <h2>BMI</h2>
+                <span id="BMI">--</span>
+                <span class="unit" id="BMI-unit"></span>
+            </div>
+
+            <div class="card stat" title="Percent Body Fat">
+                <h2>PBF</h2>
+                <span id="PBF">--</span>
+                <span class="unit" id="PBF-unit">%</span>
+            </div>
+
+            <div class="card stat" title="Skeletal Muscle Mass">
+                <h2>SMM</h2>
+                <span id="SMM">--</span>
+                <span class="unit" id="SMM-unit">kg</span>
+            </div>
         </section>
+
+        <div class="columns">
+
+            <!-- today's exercises -->
+            <section class="card exercises">
+                <div class="card-head">
+                    <h2>Today's Exercises</h2>
+                    <a href="../exercises/exercises.html" class="btn btn-outline">View all</a>
+                </div>
+
+                <table id="exercises-table">
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Sets</th>
+                            <th>Weight</th>
+                        </tr>
+                    </thead>
+                    <!-- rows are added by home.js -->
+                    <tbody>
+                        <tr class="empty-row">
+                            <td colspan="3">No exercises for today.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- today's calories -->
+            <section class="card calories">
+                <div class="card-head">
+                    <h2>Today's Calories</h2>
+                    <a href="../diet/diet.html" class="btn btn-outline">Diet</a>
+                </div>
+
+                <div class="progress-label">
+                    <span>Consumed</span>
+                    <span><span id="consumed">0</span> / <span id="calories-goal">0</span> kcal</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-fill consumed" id="consumed-bar"></div>
+                </div>
+
+                <div class="progress-label">
+                    <span>Burned</span>
+                    <span><span id="burned">0</span> kcal</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-fill burned" id="burned-bar"></div>
+                </div>
+
+                <a href="../reports/reports.html" class="btn btn-primary">Open reports</a>
+            </section>
+        </div>
     </main>
 
     <!-- ////////////////////////// -->

@@ -64,4 +64,59 @@ popup();
 
 // ////////////////////////////
 
+// ! logout popup (header)
+
+/*
+    The backend (PHP) should end the session of the logged-in user:
+
+        POST  ../../../Backend/api/logout.php
+
+              session_start();
+              $_SESSION = [];
+              session_destroy();
+*/
+
+const LOGOUT_API = "../../../Backend/api/logout.php";
+const WELCOME_PAGE = "../welcome/welcome.html";
+
+function logoutPopup() {
+    const logoutBtn = document.getElementById("logout-btn");
+    const logoutPopup = document.getElementById("logout-popup");
+    const logoutYesBtn = document.getElementById("logout-yes-btn");
+    const logoutNoBtn = document.getElementById("logout-no-btn");
+
+    // if the page has the logout popup
+    if (logoutBtn && logoutPopup) {
+
+        // to open the popup
+        logoutBtn.addEventListener("click", () => {
+            logoutPopup.showModal();
+        });
+
+        // "No" -> just close the popup
+        logoutNoBtn.addEventListener("click", () => {
+            logoutPopup.close();
+        });
+
+        // "Yes" -> end the session, then go to the welcome page
+        logoutYesBtn.addEventListener("click", async () => {
+            try {
+                await fetch(LOGOUT_API, {
+                    method: "POST",
+                    credentials: "same-origin",
+                });
+            } catch (error) {
+                // the backend is not ready (or failed), go to the welcome page anyway
+                console.warn("Could not logout:", error);
+            }
+
+            window.location.href = WELCOME_PAGE;
+        });
+    }
+}
+
+logoutPopup();
+
+// ////////////////////////////
+
 export {};
