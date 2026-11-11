@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Fitness Tracker - Diet</title></head>
+<body>
+    <header>
+        <img src="../../../../assets/images/FT logo.png"
+             alt="Fitness Tracker Logo"
+             width="120"
+             height="80"/>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../reports/reports.html">Reports</a></li>
+                <li><a href="../exercises/exercises.html">Exercises</a></li>
+                <li><a href="diet.html">Diet</a></li>
+                <li><a href="../profile/profile.html">Profile</a></li>
+                <li><a href="#">EN / AR</a></li>
+                <li><a href="../../Forms/login.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr/>
+    <section>
+        <h2>Diet</h2>
+        <p>
+            Choose a diet: <!--UR-12-->
+            <a href="#recommended">Recommended</a> | <a href="#meal-form">Custom</a>
+        </p>
+        <article>
+            <header>
+                <h3 id="recommended">Recommended Diet</h3>
+            </header>
+            <p>
+                These are your recommended meals for the day.
+                You can add your own meals, edit them, or delete them.
+            </p>
+            <table border="1" cellpadding="5" cellspacing="0">
+                <caption>Today's Recommended Meals</caption>
+                <thead>
+                    <tr>
+                        <th>Meal Name</th>
+                        <th>Protein (g)</th>
+                        <th>Carbohydrates (g)</th>
+                        <th>Fats (g)</th>
+                        <th>Calories (kcal)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Oatmeal with Milk</td>
+                        <td>15</td>
+                        <td>50</td>
+                        <td>10</td>
+                        <td>350</td>
+                        <td>
+                            <a href="#meal-form">Edit</a>
+                            <button type="button">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grilled Chicken</td>
+                        <td>40</td>
+                        <td>30</td>
+                        <td>12</td>
+                        <td>400</td>
+                        <td>
+                            <a href="#meal-form">Edit</a>
+                            <button type="button">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Greek Yogurt</td>
+                        <td>20</td>
+                        <td>15</td>
+                        <td>5</td>
+                        <td>185</td>
+                        <td>
+                            <a href="#meal-form">Edit</a>
+                            <button type="button">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <hr/>
+        <article>
+            <header>
+                <h3 id="custom">Custom Diet</h3>
+            </header>
+            <p>
+                These are the meals you added yourself.
+            </p>
+            <table border="1" cellpadding="5" cellspacing="0">
+                <caption>My Meals</caption>
+
+                <thead>
+                    <tr>
+                        <th>Meal Name</th>
+                        <th>Protein (g)</th>
+                        <th>Carbohydrates (g)</th>
+                        <th>Fats (g)</th>
+                        <th>Calories (kcal)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Egg Sandwich</td>
+                        <td>18</td>
+                        <td>35</td>
+                        <td>14</td>
+                        <td>340</td>
+                        <td>
+                            <a href="#meal-form">Edit</a>
+                            <button type="button">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Protein Shake</td>
+                        <td>25</td>
+                        <td>12</td>
+                        <td>4</td>
+                        <td>180</td>
+                        <td>
+                            <a href="#meal-form">Edit</a>
+                            <button type="button">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <a href="#meal-form">Add Meal</a>
+            </p>
+        </article>
+
+        <hr/>
+        <article>
+            <header>
+                <h3>Daily Nutrition</h3> <!--UR-15-->
+            </header>
+            <h4>Calories Consumed</h4>
+            <p>
+                Daily Calorie Target: 2000 kcal
+            </p>
+            <p>
+                Calories Consumed: 1275 kcal
+            </p>
+            <progress value="1275" max="2000">
+                1275 out of 2000 kcal
+            </progress>
+            <p>
+                725 kcal remaining
+            </p>
+            <hr/>
+            <h4>Macronutrient Comparison</h4>
+            <table border="1" cellpadding="5" cellspacing="0">
+                <caption>Daily Macronutrients</caption> <!--UR-14-->
+                <thead>
+                    <tr>
+                        <th>Nutrient</th>
+                        <th>Consumed (g)</th>
+                        <th>Recommended (g)</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Protein</td>
+                        <td>93</td>
+                        <td>150</td>
+                        <td>
+                            <progress value="93" max="150">
+                                93 out of 150
+                            </progress>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Carbohydrates</td>
+                        <td>142</td>
+                        <td>250</td>
+                        <td>
+                            <progress value="142" max="250">
+                                142 out of 250
+                            </progress>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fats</td>
+                        <td>45</td>
+                        <td>65</td>
+                        <td>
+                            <progress value="45" max="65">
+                                45 out of 65
+                            </progress>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <hr/>
+        <article>
+            <header>
+                <h3 id="meal-form">Add or Edit Meal</h3> <!--UR-16-->
+            </header>
+            <form action="#" method="post">
+                <p>
+                    <label for="meal-name">Meal Name:</label>
+                    <input
+                        type="text"
+                        id="meal-name"
+                        name="meal-name"
+                        required/>
+                </p>
+                <p>
+                    <label for="protein">Protein (g):</label>
+                    <input
+                        type="number"
+                        id="protein"
+                        name="protein"
+                        min="0"
+                        step="0.1"
+                        required/>
+                </p>
+                <p>
+                    <label for="carbohydrates">Carbohydrates (g):</label>
+                    <input
+                        type="number"
+                        id="carbohydrates"
+                        name="carbohydrates"
+                        min="0"
+                        step="0.1"
+                        required/>
+                </p>
+                <p>
+                    <label for="fats">Fats (g):</label>
+                    <input
+                        type="number"
+                        id="fats"
+                        name="fats"
+                        min="0"
+                        step="0.1"
+                        required/>
+                </p>
+                <p>
+                    <label for="calories">Calories (kcal):</label>
+                    <input
+                        type="number"
+                        id="calories"
+                        name="calories"
+                        min="0"
+                        step="1"
+                        required/>
+                </p>
+                <p>
+                    <button type="submit">Save Meal</button>
+                    <button type="reset">Clear Form</button>
+                </p>
+            </form>
+        </article>
+    </section>
+    <hr/>
+    <footer>
+        <p>&copy; Group(1) - Fitness Tracker</p>
+        <ul>
+            <li>Reda Alqatifi</li>
+            <li>Hassan Almomatten</li>
+            <li>Mohammed Alkhalifah</li>
+            <li>Ahmed Koozi</li>
+            <li>Redwan Talib</li>
+        </ul>
+        <p>
+            <a href="#top">Back to Top</a>
+        </p>
+    </footer>
+</body>
+</html>

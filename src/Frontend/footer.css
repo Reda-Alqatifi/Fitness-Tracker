@@ -1,0 +1,135 @@
+/* ! Footer */
+
+#global-footer {
+    font-family: var(--font-type-1);
+    font-size: var(--font-mid);
+    color: var(--color-text);
+
+    background-color: var(--color-navbar);
+    font-weight: bold;
+
+    margin: auto;
+    margin-top: var(--space-large);
+    padding: var(--space-none);
+
+    height: calc(var(--font-3x-large) * 1.1);
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    box-shadow: var(--shadow-low-blur) var(--color-shadow);
+
+    position: relative;
+    z-index: var(--z-navbar);
+}
+#global-footer .rights {
+    text-align: center;
+    padding: var(--space-mid);
+}
+#global-footer .rights span{
+    opacity: var(--opacity-mid);
+}
+/* "Group (1)" button: looks like a link */
+#members-btn {
+    font: inherit;
+    color: inherit;
+    text-decoration: underline;
+
+    opacity: var(--opacity-high);
+
+    background: none;
+    border: none;
+    padding: var(--space-none);
+
+    cursor: pointer;
+}
+#global-footer #members-btn:hover {
+    color: var(--color-text-hover);
+    transition: var(--transition-fast);
+
+    opacity: 1;
+}
+
+/* ////////////// */
+
+/* the popup */
+#global-footer #members-popup {
+    --color-text: var(--palette-white);
+    
+    font-family: var(--font-type-1);
+    color: var(--color-text);
+    background-color: var(--color-account-background);
+
+    padding: var(--space-x-large);
+
+    border: var(--border-mid) solid var(--color-account-border);
+    border-radius: var(--radius-mid);
+
+    box-shadow: var(--shadow-low-blur) var(--color-shadow);
+}
+/* only when the popu is open */
+#global-footer #members-popup[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* the dark background behind the popup */
+#global-footer #members-popup::backdrop {
+    background-color: color-mix(in srgb, var(--palette-black) var(--opacity-mid), transparent);
+}
+
+#global-footer #members-close-btn {
+    position: absolute;
+    top: var(--space-small);
+    right: var(--space-small);
+
+    color: inherit;
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+#global-footer #members-close-btn:hover {
+    color: var(--color-text-hover);
+}
+
+#global-footer #members-list {
+    display: grid;
+    grid-template-columns: max-content auto auto;
+    
+    column-gap: var(--space-large);
+    row-gap: var(--space-small);
+
+    margin: var(--space-none);
+    padding: var(--space-none);
+
+    list-style-type: none;
+}
+/* to each member use the same columns of the list (subgrid) */
+#global-footer #members-list li {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+
+    text-align: start;
+}
+#global-footer #members-list a {
+    display: flex;
+}
+#global-footer img {
+    width: var(--size-2x-small);
+}
+#global-footer img:hover {
+    filter:
+        drop-shadow(1px 0 0 var(--color-text-hover))
+        drop-shadow(-1px 0 0 var(--color-text-hover))
+        drop-shadow(0 1px 0 var(--color-text-hover))
+        drop-shadow(0 -1px 0 var(--color-text-hover));
+
+    transition: var(--transtion-fast);
+}
