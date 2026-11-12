@@ -1,33 +1,13 @@
-import '../../main.js';
+import { getById } from '../../main.js';
 
 // ! home page data (from the backend)
 
 /*
-    The backend (PHP) should return the home data of the LOGGED-IN user as JSON:
-
-        GET  ../../../Backend/api/home.php
-
-    ! Security:
-        - The frontend does NOT send a user id. The backend must take it from the
-          PHP session that was created on login, so no one can ask for another
-          user's data by changing a value in the browser:
-
-              session_start();
-              if (!isset($_SESSION['user_id'])) {
-                  http_response_code(401);   // not logged in
-                  exit;
-              }
-              $userId = $_SESSION['user_id'];
-
-        - On login: session_regenerate_id(true); then $_SESSION['user_id'] = <id>;
-        - Session cookie should be HttpOnly + SameSite=Strict (and Secure on HTTPS).
-        - Use prepared statements (PDO) for every query that uses $userId.
-
     Responses:
-        200 -> the data below
+        200 -> success to access the data
         401 -> not logged in (the page redirects to the login page)
 
-    Expected response (200):
+    Expected response (ex) from backend (200):
         {
             "name": "Flan",
             "weight": 78,
@@ -45,11 +25,10 @@ import '../../main.js';
         }
 */
 
-const HOME_API = "../../../Backend/api/home.php";
+const HOME_API = "../../../Backend/[home.php]"; //! [Backend]
 const LOGIN_PAGE = "../Forms/login.html";
 
-// get the data of the logged-in user from the backend
-// (the session cookie is sent automatically, the backend knows who the user is)
+//! get the data of the logged-in user from the backend
 async function fetchHomeData() {
     const response = await fetch(HOME_API, {
         credentials: "same-origin",
@@ -71,26 +50,31 @@ async function fetchHomeData() {
 
 // ////////////////////////////
 
-// put a value inside an element, or "--" if there is no value
+//! put a value inside an element, or "--" if there is no value
 function setText(id, value) {
-    const element = document.getElementById(id);
+    const element = getById(id);
 
-    if (element) {
-        element.textContent = (value ?? "") === "" ? "--" : value;
+    if (!element) {
+        return;
+    }
+
+    if (value === undefined || value === null || value === "") {
+        element.textContent = "--";
+    } else {
+        element.textContent = value;
     }
 }
 
-// fill the welcome card and the body stats
+//! to fill the welcome card and the body stats
 function renderInfo(data) {
-    document.getElementById("name").textContent = data.name ?? "";
-
+    setText("name" , data.name);
     setText("weight", data.weight);
     setText("BMI", data.bmi);
     setText("PBF", data.pbf);
     setText("SMM", data.smm);
 }
 
-// fill the exercises table
+//! to fill the exercises table
 function renderExercises(exercises = []) {
     const tbody = document.querySelector("#exercises-table tbody");
 
@@ -105,10 +89,8 @@ function renderExercises(exercises = []) {
         const row = document.createElement("tr");
 
         for (const text of [
-            exercise.name,
-            `${exercise.sets} x ${exercise.reps}`,
-            `${exercise.weight} kg`,
-        ]) {
+                exercise.name,`${exercise.sets} x ${exercise.reps}` , `${exercise.weight} kg`,]) {
+
             const cell = document.createElement("td");
             cell.textContent = text;
             row.appendChild(cell);
@@ -118,21 +100,36 @@ function renderExercises(exercises = []) {
     }
 }
 
-// fill the calories card and its progress bars
+//! to fill the calories card
 function renderCalories(calories = {}) {
-    const consumed = calories.consumed ?? 0;
-    const goal = calories.goal ?? 0;
-    const burned = calories.burned ?? 0;
+    let consumed = calories.consumed;
+    let goal = calories.goal;
+    let burned = calories.burned;
 
-    document.getElementById("consumed").textContent = consumed.toLocaleString();
-    document.getElementById("calories-goal").textContent = goal.toLocaleString();
-    document.getElementById("burned").textContent = burned.toLocaleString();
+    // put 0 if no value
+    if (consumed === undefined || consumed === null)
+        consumed = 0;
+
+    if (goal === undefined || goal === null)
+        goal = 0;
+
+    if (burned === undefined || burned === null)
+        burned = 0;
+
+    getById("consumed").textContent = consumed.toLocaleString();
+    getById("calories-goal").textContent = goal.toLocaleString();
+    getById("burned").textContent = burned.toLocaleString();
 
     // percentage of the goal (max 100%)
-    const percent = (value) => goal > 0 ? Math.min(value / goal * 100, 100) : 0;
+    function percent(value) {
+        if (goal <= 0)
+            return 0;
 
-    document.getElementById("consumed-bar").style.width = `${percent(consumed)}%`;
-    document.getElementById("burned-bar").style.width = `${percent(burned)}%`;
+        return Math.min(value / goal * 100, 100);
+    }
+
+    getById("consumed-bar").style.width = `${percent(consumed)}%`;
+    getById("burned-bar").style.width = `${percent(burned)}%`;
 }
 
 // ////////////////////////////
@@ -141,7 +138,7 @@ async function loadHome() {
     try {
         const data = await fetchHomeData();
 
-        // redirecting to the login page
+        // go back to the login page
         if (!data) {
             return;
         }
@@ -150,7 +147,7 @@ async function loadHome() {
         renderExercises(data.exercises);
         renderCalories(data.calories);
     } catch (error) {
-        // the backend is not ready (or failed), so the page stays empty
+        // the backend is not ready or failed, so the page stay empty
         console.warn("Could not load the home data:", error);
     }
 }

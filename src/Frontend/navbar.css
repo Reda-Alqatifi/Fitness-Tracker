@@ -189,3 +189,102 @@
     opacity: var(--opacity-high);
     transition: var(--transition-fast);
 }
+
+/* ////////////// */
+
+/* ! the menu button (hidden on big screens) */
+
+#menu-btn {
+    display: none;
+
+    color: var(--color-text);
+    background: none;
+
+    padding: 0;
+    margin-left: auto;
+
+    /* stays above the side menu, to close it */
+    position: relative;
+    z-index: calc(var(--z-sidemenu) + 1);
+}
+#menu-btn:hover {
+    box-shadow: none;
+    color: var(--color-text-hover);
+}
+#menu-btn .material-symbols-outlined {
+    font-size: var(--font-x-large);
+}
+
+/* ////////////// */
+
+/* ! smaller screens */
+
+/* tablets and phones: the links go inside a side menu */
+@media (max-width: 900px) {
+    #global-header #nav-bar {
+        padding: var(--space-none) var(--space-mid);
+    }
+
+    #menu-btn {
+        display: flex;
+    }
+
+    /* hidden on the right side, until the 3 lines button is clicked */
+    #global-header #nav-bar .side-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+
+        width: min(var(--size-mid), 80vw);
+        height: 100vh;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: calc(var(--font-3x-large) * 1.1 + var(--space-mid)) var(--space-large) var(--space-large);
+
+        background-color: var(--color-navbar);
+        box-shadow: var(--shadow-low-blur) var(--color-shadow);
+
+        transform: translateX(100%);
+        transition: transform var(--transition-mid);
+
+        z-index: var(--z-sidemenu);
+    }
+    /* add a dark background behind it (when it is open) */
+    #global-header #nav-bar .side-menu.open {
+        transform: translateX(0);
+        box-shadow: 0 0 0 100vmax color-mix(in srgb, var(--palette-black) var(--opacity-mid), transparent);
+    }
+
+    #global-header #nav-bar ul {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+
+        gap: var(--space-large);
+
+        margin: var(--space-none);
+        padding: var(--space-none);
+    }
+
+    /* logout and theme buttons at the bottom of the menu */
+    #global-header #nav-bar .buttons {
+        margin-left: 0;
+        margin-top: auto;
+    }
+}
+
+/* phones */
+@media (max-width: 600px) {
+    .logo {
+        width: var(--size-2x-small);
+    }
+
+    #global-header #logout-popup {
+        padding: var(--space-large);
+    }
+    #global-header #logout-popup h2 {
+        text-align: center;
+    }
+}

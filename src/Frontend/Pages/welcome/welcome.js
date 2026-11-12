@@ -1,8 +1,5 @@
-import "../../main.js";
+import {getById} from "../../main.js";
 
-function getById(id) {
-    return document.getElementById(id);
-}
 function openPage(destination , target) {
     if (destination.trim() === "")
         return;

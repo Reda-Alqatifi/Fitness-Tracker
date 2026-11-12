@@ -181,3 +181,61 @@ main {
     background-color: var(--color-graphs-2);
 }
 
+/* //////////////// */
+
+/* ! smaller screens */
+
+/* tablets */
+@media (max-width: 900px) {
+    /* 2 stats in each row */
+    #info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* exercises and calories under each other */
+    .columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* phones */
+@media (max-width: 600px) {
+    #home {
+        margin: var(--space-mid) auto;
+        padding: 0;
+    }
+
+    .card {
+        padding: var(--space-mid);
+    }
+
+    .welcome {
+        gap: var(--space-mid);
+    }
+    .welcome #account-picture {
+        width: calc(var(--size-2x-small) * 1.4);
+        height: calc(var(--size-2x-small) * 1.4);
+    }
+    .welcome #account-picture span {
+        font-size: var(--font-x-large);
+    }
+    .welcome h1 {
+        font-size: var(--font-large);
+    }
+
+    #info {
+        gap: var(--space-small);
+    }
+    .stat {
+        padding: var(--space-mid);
+    }
+    .stat span {
+        font-size: var(--font-mid);
+    }
+
+    #exercises-table th,
+    #exercises-table td {
+        padding: var(--space-small) var(--space-x-small);
+    }
+}
+

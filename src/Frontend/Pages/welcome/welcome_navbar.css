@@ -1,0 +1,64 @@
+/* ! Nav-bar */
+
+#theme-switch {
+    background-color: var(--color-background);
+}
+#theme-switch:hover {
+    box-shadow: var(--shadow-low-blur) var(--color-button-2);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sidemenu);
+    backdrop-filter: blur(var(--blur-x-low));
+    background: color-mix(in srgb, var(--color-background) var(--opacity-mid-2), transparent);
+    border-bottom: var(--border-x-small) solid var(--color-line);
+}
+
+#welcome-nav {
+    max-width: var(--size-5x-large);
+    height: var(--size-2x-small);
+    margin: 0 auto;
+    padding: calc(var(--space-small) * 1.75) var(--space-large);
+    display: flex;
+    align-items: center;
+    gap: var(--space-large);
+}
+
+#welcome-nav ul {
+    display: flex;
+    margin-right: calc(var(--space-mid) * 1.25);
+    gap: var( --space-small);
+    list-style: none;
+}
+#welcome-nav ul a {
+    padding: var( --space-small) var( --space-mid);
+    border-radius: var(--radius-full);
+    font-size: var(--font-mid);
+    color: var(--color-text-3);
+    transition: color var(--transition-fast-2), background var(--transition-fast-2);
+    text-decoration: none;
+}
+#welcome-nav ul a:hover {
+    color: var(--color-text);
+    background: var(--color-hover);
+}
+
+#login {
+    background-color: var(--color-button-2);
+    color: var(--color-text-button);
+    border-radius: var(--radius-full);
+    border: none;
+    box-shadow: var(--shadow-low-blur) var(--color-button-2);
+    font: 700 calc(var(--font-small) * 1.3) var(--font-body);
+    margin-right: auto;
+    align-items: center;
+    padding: calc(var(--space-x-small) * 1.25) calc(var(--space-mid) * 1.25);
+
+    cursor: pointer;
+}
+#login:hover {
+    border: var(--border-x-small) solid var(--palette-light-green);
+    box-shadow: var(--shadow-low-blur) var(--palette-light-green);
+}
