@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Fitness Tracker - Exercises</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light" id="meta-mode">
+    <title>Exercises</title>
+
+    <!--! Connecting with 'css'-->
+    <link rel="stylesheet" href="exercises.css" />
+
+    <!--! to use some google symbols, like Home icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+</head>
 </head>
 <body>
 
-    <!-- Header with navigation -->
-    <header>
-        <img src="../../../../assets/images/FT logo.png"
-             alt="Fitness Tracker Logo"
-             width="120"
-             height="80"/>
+    <header id="global-header">
 
-        <nav>
-            <ul>
-                <li><a href="../home/home.html">Home</a></li>
-                <li><a href="../reports/reports.html">Reports</a></li>
-                <li><a href="exercises.html">Exercises</a></li>
-                <li><a href="../diet/diet.html">Diet</a></li>
-                <li><a href="../profile/profile.html">Profile</a></li>
-                <li><a href="#">EN / AR</a></li>
-                <li><a href="../../Forms/login.html">Logout</a></li>
-            </ul>
+        <nav id="nav-bar">
+
+            <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+
+            <div id="sideMenu" class="side-menu">
+                <ul>
+                    <li><a href="../home/home.html">
+                        <span class="material-symbols-outlined">home</span>
+                        Home
+                    </a></li>
+                    <li><a href="../reports/reports.html">Reports</a></li>
+                    <li><a href="../exercises/exercises.html" class="selected">Exercises</a></li>
+                    <li><a href="../diet/diet.html">Diet</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                </ul>
+
+                <div class="buttons">
+                    <button id="logout-btn" class="btn">logout</button>
+
+                    <button id="theme-switch" class="btn">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <hr/>
-
     <!-- Main content -->
-    <section>
-
-        <h2>Exercises</h2>
+    <main>
 
         <!-- Choice between recommended and custom -->
-        <p>
-            Choose a schedule:
-            <a href="#recommended">Recommended</a> |
-            <a href="#custom">Custom</a>
-        </p>
+        <div class="schedule-selector">
+            <button type="button" id="btn-recommended" class="schedule-btn active">Recommended Exercises</button>
+           <button type="button" id="btn-custom" class="schedule-btn">Custom Exercises</button>
+        </div>
 
         <!-- Recommended exercises -->
         <article>
@@ -45,9 +60,7 @@
                 <h3 id="recommended">Recommended Exercises</h3>
             </header>
 
-            <table border="1" cellpadding="5" cellspacing="0">
-                <caption>This Week's Recommended Exercises</caption>
-
+            <table>
                 <thead>
                     <tr>
                         <th>Exercise Name</th>
@@ -82,7 +95,6 @@
             </table>
         </article>
 
-        <hr/>
 
         <!-- Custom exercises -->
         <article>
@@ -90,12 +102,7 @@
                 <h3 id="custom">Custom Exercises</h3>
             </header>
 
-            <p>
-                These are the exercises <em>you</em> added yourself.
-            </p>
-
-            <table border="1" cellpadding="5" cellspacing="0">
-                <caption>My Exercises</caption>
+            <table>
 
                 <thead>
                     <tr>
@@ -122,7 +129,6 @@
             </table>
         </article>
 
-        <hr/>
 
         <!-- Add / Edit Exercise Form -->
         <article>
@@ -233,7 +239,6 @@
             </form>
         </article>
 
-        <hr/>
 
         <!-- Calories burned summary -->
         <aside>
@@ -245,26 +250,78 @@
             </p>
         </aside>
 
-    </section>
-
-    <hr/>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; Group(1) - Fitness Tracker</p>
+    <footer id="global-footer">
+        <div class="rights">
+            <span>Copyrights © 2026 by </span>
+            <button id="members-btn">Group (1)</button>
+            <span>. All Rights Reserved.</span>
+        </div>
 
-        <ul>
-            <li>Reda Alqatifi</li>
-            <li>Hassan Almomatten</li>
-            <li>Mohammed Alkhalifah</li>
-            <li>Ahmed Koozi</li>
-            <li>Redwan Talib</li>
-        </ul>
+        <!-- the popup, opened when clicking on "Group (1)" (the js is in main.js) -->
+        <dialog id="members-popup" class="group-memebers">
 
-        <p>
-            <a href="#top">Back to Top</a>
-        </p>
+            <button id="members-close-btn" type="button" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <h2>Group (1) Members:</h2>
+
+            <ul id="members-list">
+                <li>
+                    Reda Alqatifi
+                    <a href="https://github.com/Reda-Alqatifi" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/reda-alqatifi-a58515414/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Hassan Almomatten
+                    <a href="https://github.com/krbto" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/hassan-eyad-333465357/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Mohammed Alkhalifa
+                    <a href="https://github.com/stydex" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohammed-al-khalifa-3a5635335/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Ahmed Kouzi
+                    <a href="https://github.com/AhmedK64" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/ahmed-kouzi-969915344/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Redwan Talib
+                    <a href="https://github.com/redwanYtaleb" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/redwanytaleb/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+            </ul>
+        </dialog>
+
     </footer>
+
+    <!--! Connecting with 'js'-->
+    <script type="module" src="exercises.js"></script>
 
 </body>
 </html>
