@@ -12,6 +12,13 @@ const data_steps =[30,70]
 const weightLabels = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'];
 const weightData = [82, 81.2, 80.5, 79.8, 79];
 
+
+
+
+Chart.defaults.font.family = "'Helvetica Neue', 'Arial', sans-serif";
+Chart.defaults.color = '#000000';
+
+
 /*Chart for Today's Consumed vs. Burned Calories */
 const TodayChart = new Chart('todayCaloriesCanvas',{
     type: 'bar',

@@ -25,7 +25,7 @@
     width: 500px;         
     max-width: 100%;        
     height: 300px;
-    border: 2px solid #ccc; 
+    border: 3px solid #000000; 
     border-radius: 20px;
     padding: 15px;         
     margin-bottom: 20px;
@@ -54,4 +54,108 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+/* =========================================
+   Timeframe Selection Controls
+   ========================================= */
+.timeframe-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 3px solid #000000;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.timeframe-controls label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.timeframe-controls select {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.timeframe-controls select:focus {
+    border-color: #ff7722;
+}
+
+#exportPdfBtn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff7722;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#exportPdfBtn:hover {
+    background-color: #e66611;
+}
+
+/* =========================================
+   Historical Records Table
+   ========================================= */
+.table-section {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.table-section h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Responsive wrapper to prevent table from breaking layout on small screens */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border: 3px solid #000000;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+#reportsDataTable {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Forces scrolling on very small screens */
+}
+
+#reportsDataTable th,
+#reportsDataTable td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#reportsDataTable th {
+    background-color: rgba(255, 119, 34, 0.15); /* Matches your line chart fill */
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+#reportsDataTable tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.2s ease;
+}
+
+/* Removes border from the very last row to keep the rounded corners looking clean */
+#reportsDataTable tbody tr:last-child td {
+    border-bottom: none;
 }
