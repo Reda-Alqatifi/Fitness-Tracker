@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light" id="meta-mode">
+    <title>Reports & Analytics - Fitness Tracker</title>
+
+    <link rel="stylesheet" href="reports.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+
+    
+</head>
+<body>
+
+        <!-- !     H E A D E R     -->
+    <header id="global-header">
+
+        <nav id="nav-bar">
+
+            <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+
+            <div id="sideMenu" class="side-menu">
+                <ul>
+                    <li><a href="../home/home.html">
+                        <span class="material-symbols-outlined">home</span>
+                        Home
+                    </a></li>
+                    <li><a href="../reports/reports.html" class="selected">Reports</a></li>
+                    <li><a href="../exercises/exercises.html">Exercises</a></li>
+                    <li><a href="../diet/diet.html">Diet</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                </ul>
+
+                <div class="buttons">
+                    <button id="logout-btn" class="btn">logout</button>
+
+                    <button id="theme-switch" class="btn">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <hr>
+
+    <!-- Timeframe Selection -->
+     <div id="wrapper">
+    <section class="timeframe-controls">
+        <label for="timeframeSelect">Select Timeframe:</label>
+        <select id="timeframeSelect">
+            <option value="month">Last Month</option>
+            <option value="week">Last Week</option>
+            <option value="year">Last Year</option>
+            <option value="custom">Custom Period</option>
+        </select>
+        <button type="button" id="exportPdfBtn" onclick="window.print()">Export to PDF</button>
+    </section>
+
+    <hr>
+
+    <main>
+        <!-- 1. Today's Consumed vs Burned Calories -->
+         <div class = FirstRow >
+            <section id="todayCalories">
+                <h3>Today's Consumed vs. Burned Calories</h3>
+                <!-- Canvas for JavaScript Chart -->
+                <div class="chart_contanor">
+                    <canvas id="todayCaloriesCanvas"></canvas>
+                </div>
+            </section>
+
+        <!-- 2. Daily Burned Calories Bar Chart -->
+            <section id="dailyBurned">
+            
+                <h3>Daily Burned Calories</h3>
+                <!-- Canvas for JavaScript Bar Chart -->
+                <div class="chart_contanor">
+                    <canvas id="dailyBurnedCanvas"></canvas>
+                </div>
+            
+            </section>
+        </div>
+        <!-- 3. Daily Steps Chart -->
+        <div class = SecondRow>
+            <section id="steps">
+            
+                <h3>Daily Steps Counter</h3>
+                <!-- Canvas for JavaScript Steps Chart -->
+                <div class="chart_contanor">
+                    <canvas id="stepsCanvas"></canvas>
+                    <div class="Centered_Icone">
+                        <img src="icones/steps.png" alt="Steps">
+                    </div>
+                </div>
+            
+            </section>
+
+        <!-- 4. Weight Progress Line Chart -->
+            <section id="weight">
+            
+                <h3>Weight Change Over Time</h3>
+                <!-- Canvas for JavaScript Line Chart -->
+                <div class="chart_contanor">
+                <canvas id="weightCanvas"></canvas>
+                </div>
+            
+            </section>
+        </div>
+
+        <!-- 5. Log History Table (Empty Body for Dynamic Data) -->
+        <section class="table-section">
+            <h3>Historical Records Table</h3>
+            <div class="table-responsive">
+                <table border="1" id="reportsDataTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Weight (kg)</th>
+                            <th>Consumed Calories (kcal)</th>
+                            <th>Burned Calories (kcal)</th>
+                            <th>Steps Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportsTableBody">
+                        <!-- JavaScript will insert dynamic rows here based on user data -->
+                    </tbody>
+            </table>
+            </div>
+        </section>
+    </main>
+
+        <!-- !     F O O T E R     -->
+    </div>
+    <footer id="global-footer">
+        <div class="rights">
+            <span>Copyrights © 2026 by </span>
+            <button id="members-btn">Group (1)</button>
+            <span>. All Rights Reserved.</span>
+        </div>
+
+        <!-- the popup, opened when clicking on "Group (1)" (the js is in main.js) -->
+        <dialog id="members-popup" class="group-memebers">
+
+            <button id="members-close-btn" type="button" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <h2>Group (1) Members:</h2>
+
+            <ul id="members-list">
+                <li>
+                    Reda Alqatifi
+                    <a href="https://github.com/Reda-Alqatifi" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/reda-alqatifi-a58515414/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Hassan Almomatten
+                    <a href="https://github.com/krbto" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/hassan-eyad-333465357/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Mohammed Alkhalifa
+                    <a href="https://github.com/stydex" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohammed-al-khalifa-3a5635335/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Ahmed Kouzi
+                    <a href="https://github.com/AhmedK64" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/ahmed-kouzi-969915344/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Redwan Talib
+                    <a href="https://github.com/redwanYtaleb" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/redwanytaleb/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+            </ul>
+        </dialog>
+
+    </footer>
+
+    <!-- ////////////////////////////  -->
+    <!-- 1. Load the Chart.js library first -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- 2. Then load your custom script that uses Chart.js -->
+<script type="module" src="reports.js"></script>
+    
+</body>
+</html>
