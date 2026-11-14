@@ -17,42 +17,50 @@
 <body>
     
     <!-- !     H E A D E R     -->
-    <header id="#global-header">
+    <header id="global-header">
 
         <nav id="nav-bar">
 
-            <!-- for the wide image of the header, which is above the nav-bar -->
-            <div id="image-container"> 
-                <!-- content will be added using js, to be changed relative to the section
-                        if the section isn't Home -->
-            </div>
+            <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
 
-            <img  class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+            <!-- the 3 lines button (only on small screens) -->
+            <button id="menu-btn" class="btn" type="button" aria-label="Menu" aria-expanded="false">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
 
             <div id="sideMenu" class="side-menu">
                 <ul>
                     <li><a href="../home/home.html" class="selected">
                         <span class="material-symbols-outlined">home</span>
-                        <span>Home</span>
+                        Home
                     </a></li>
                     <li><a href="../reports/reports.html">Reports</a></li>
-                    <li><a href="exercises.html">Exercises</a></li>
+                    <li><a href="../exercises/exercises.html">Exercises</a></li>
                     <li><a href="../diet/diet.html">Diet</a></li>
                     <li><a href="../profile/profile.html">Profile</a></li>
-
-                    <li><a href="#language">&#x25BE;Language</a></li>
-                    <button id="logout-btn" class="btn">logout</button>
                 </ul>
+
+                <div class="buttons">
+                    <button id="logout-btn" class="btn">logout</button>
+
+                    <button id="theme-switch" class="btn">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+                </div>
             </div>
-            
         </nav>
 
-        <div id="language">
-            <ul>
-                <li><a id="en">English</a></li>
-                <li><a id="ar">Arabic</a></li>
-            </ul>
-        </div>
+        <!-- ! the logout popup -->
+        <dialog id="logout-popup">
+
+            <h2>Are you sure you want to logout?</h2>
+
+            <div class="popup-buttons">
+                <button id="logout-yes-btn" class="btn" type="button">Yes</button>
+                <button id="logout-no-btn" class="btn" type="button">No</button>
+            </div>
+        </dialog>
     </header>
 
     <!-- ////////////////////////// -->
@@ -60,50 +68,115 @@
     <!-- !     M A I N     -->
     <main id="home" class="active">
 
-        <section class="personal-info">
+        <!-- welcome card -->
+        <section class="card welcome">
             <div id="account-picture">
                 <span>FT</span>
             </div>
 
-            <div id="info">
-                <div>
-                    <h2>Name: </h2><span id="name"></span>
-                </div>
-
-                <div>
-                    <h2>Weight: </h2><span id="weight"></span>
-                </div>
-
-                <div>
-                    <h2>BMI (Body Mass Index): </h2><span id="BMI"></span>
-                </div>
-                
-                <div>
-                    <h2>PBF (Percent Body Fat): </h2><span id="PBF"></span>
-                </div>
-
-                <div>
-                    <h2>SMM (Skeletal Muscle Mass): </h2><span id="SMM"></span>
-                </div>
+            <div>
+                <h1>Welcome back, <span id="name"></span></h1>
+                <p class="muted">Here is your fitness summary for today.</p>
             </div>
         </section>
 
-        <section class="exercises">
-            <h1>Today exercises:</h1>
+        <!-- body stats (filled by home.js from the backend) -->
+        <section id="info">
+            <div class="card stat" title="Weight">
+                <h2>Weight</h2>
+                <span id="weight">--</span>
+                <span class="unit" id="weight-unit">kg</span>
+            </div>
 
-            <div id="exercises-table"></div>
+            <div class="card stat" title="Body Mass Index">
+                <h2>BMI</h2>
+                <span id="BMI">--</span>
+                <span class="unit" id="BMI-unit"></span>
+            </div>
+
+            <div class="card stat" title="Percent Body Fat">
+                <h2>PBF</h2>
+                <span id="PBF">--</span>
+                <span class="unit" id="PBF-unit">%</span>
+            </div>
+
+            <div class="card stat" title="Skeletal Muscle Mass">
+                <h2>SMM</h2>
+                <span id="SMM">--</span>
+                <span class="unit" id="SMM-unit">kg</span>
+            </div>
         </section>
+
+        <div class="columns">
+
+            <!-- today's exercises -->
+            <section class="card exercises">
+                <div class="card-head">
+                    <h2>Today's Exercises</h2>
+                    <a href="../exercises/exercises.html" class="btn btn-outline">View all</a>
+                </div>
+
+                <table id="exercises-table">
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Sets</th>
+                            <th>Weight</th>
+                        </tr>
+                    </thead>
+                    <!-- rows are added by home.js -->
+                    <tbody>
+                        <tr class="empty-row">
+                            <td colspan="3">No exercises for today.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- today's calories -->
+            <section class="card calories">
+                <div class="card-head">
+                    <h2>Today's Calories</h2>
+                    <a href="../diet/diet.html" class="btn btn-outline">Diet</a>
+                </div>
+
+                <div class="progress-label">
+                    <span>Consumed</span>
+                    <span><span id="consumed">0</span> / <span id="calories-goal">0</span> kcal</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-fill consumed" id="consumed-bar"></div>
+                </div>
+
+                <div class="progress-label">
+                    <span>Burned</span>
+                    <span><span id="burned">0</span> kcal</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-fill burned" id="burned-bar"></div>
+                </div>
+
+                <a href="../reports/reports.html" class="btn btn-primary">Open reports</a>
+            </section>
+        </div>
     </main>
 
     <!-- ////////////////////////// -->
     
     <!-- !     F O O T E R     -->
-    <footer id="#global-footer">
+    <footer id="global-footer">
         <div class="rights">
-            Copyrights © 2026 by <strong>Group (1)</strong>. All Rights Reserved.
+            <span>Copyrights © 2026 by </span>
+            <button id="members-btn">Group (1)</button>
+            <span>. All Rights Reserved.</span>
         </div>
 
-        <div class="group-memebers">
+        <!-- the popup, opened when clicking on "Group (1)" (the js is in main.js) -->
+        <dialog id="members-popup" class="group-memebers">
+
+            <button id="members-close-btn" type="button" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
 
             <h2>Group (1) Members:</h2>
 
@@ -122,7 +195,7 @@
                     <a href="https://github.com/krbto" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/hassan-eyad-333465357/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
@@ -131,7 +204,7 @@
                     <a href="https://github.com/stydex" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/mohammed-al-khalifa-3a5635335/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
@@ -140,7 +213,7 @@
                     <a href="https://github.com/AhmedK64" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/ahmed-kouzi-969915344/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
@@ -149,12 +222,12 @@
                     <a href="https://github.com/redwanYtaleb" target="_blank">
                         <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
                     </a>
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a href="https://www.linkedin.com/in/redwanytaleb/" target="_blank">
                         <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
                     </a>
                 </li>
             </ul>
-        </div>
+        </dialog>
 
     </footer>
 
