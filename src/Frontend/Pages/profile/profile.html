@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light" id="meta-mode">
+    <title>Fitness Tracker - Profile</title>
+
+    <link rel="icon" type="image/png" href="../../../../assets/images/FT logo.png" />
+
+    <link rel="stylesheet" href="profile.css" />
+
+    <!-- To use the google symbols (icons) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+</head>
+<body>
+
+    <!-- Header (same as the other pages, the js is in main.js) -->
+    <header id="global-header">
+
+        <nav id="nav-bar">
+
+            <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+
+            <!-- The 3 lines button (only on small screens) -->
+            <button id="menu-btn" class="btn" type="button" aria-label="Menu" aria-expanded="false">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+
+            <div id="sideMenu" class="side-menu">
+                <ul>
+                    <li><a href="../home/home.html">
+                        <span class="material-symbols-outlined">home</span>
+                        Home
+                    </a></li>
+                    <li><a href="../reports/reports.html">Reports</a></li>
+                    <li><a href="../exercises/exercises.html">Exercises</a></li>
+                    <li><a href="../diet/diet.html">Diet</a></li>
+                    <li><a href="../profile/profile.html" class="selected">Profile</a></li>
+                </ul>
+
+                <div class="buttons">
+                    <button id="logout-btn" class="btn">logout</button>
+
+                    <button id="theme-switch" class="btn">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- The logout popup -->
+        <dialog id="logout-popup">
+
+            <h2>Are you sure you want to logout?</h2>
+
+            <div class="popup-buttons">
+                <button id="logout-yes-btn" class="btn" type="button">Yes</button>
+                <button id="logout-no-btn" class="btn" type="button">No</button>
+            </div>
+        </dialog>
+    </header>
+
+    <!-- Main content -->
+    <main id="profile">
+
+        <!-- My information (filled by profile.js from the backend) -->
+        <section class="card info">
+            <div id="account-picture">
+                <span>FT</span>
+            </div>
+
+            <div class="info-text">
+                <h1 id="name">--</h1>
+
+                <table id="info-table">
+                    <tr>
+                        <th>Gender</th>
+                        <td id="gender">--</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td id="age">--</td>
+                    </tr>
+                    <tr>
+                        <th>Height (cm)</th>
+                        <td id="height">--</td>
+                    </tr>
+                    <tr>
+                        <th>Weight (kg)</th>
+                        <td id="weight">--</td>
+                    </tr>
+                    <tr>
+                        <th>Target Weight (kg)</th>
+                        <td id="target-weight">--</td>
+                    </tr>
+                    <tr>
+                        <th>Goal</th>
+                        <td id="goal">--</td>
+                    </tr>
+                    <tr>
+                        <th>Activity Level</th>
+                        <td id="activity">--</td>
+                    </tr>
+                    <tr>
+                        <th>Account Created</th>
+                        <td id="created">--</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Edit information -->
+        <section class="card">
+            <h2>Edit Information</h2>
+
+            <form id="edit-form">
+
+                <div class="field">
+                    <label for="edit-name">Name</label>
+                    <input type="text" id="edit-name" name="name" minlength="2" maxlength="50" required/>
+                </div>
+
+                <div class="field">
+                    <label for="edit-birthdate">Birthdate</label>
+                    <input type="date" id="edit-birthdate" name="birthdate" min="1926-01-01" max="2016-12-31" required/>
+                </div>
+
+                <div class="field">
+                    <label for="edit-height">Height (cm)</label>
+                    <input type="number" id="edit-height" name="height" min="50" max="250" step="1" required/>
+                </div>
+
+                <div class="field">
+                    <label for="edit-weight">Weight (kg)</label>
+                    <input type="number" id="edit-weight" name="weight" min="20" max="300" step="0.1" required/>
+                </div>
+
+                <div class="field">
+                    <label for="edit-target-weight">Target Weight (kg)</label>
+                    <input type="number" id="edit-target-weight" name="target-weight" min="20" max="300" step="0.1"/>
+                </div>
+
+                <div class="field">
+                    <label for="edit-gender">Gender</label>
+                    <select id="edit-gender" name="gender" required>
+                        <option value="">-- Choose --</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="edit-goal">Goal</label>
+                    <select id="edit-goal" name="goal" required>
+                        <option value="">-- Choose --</option>
+                        <option value="lose">Lose weight</option>
+                        <option value="gain">Gain weight</option>
+                        <option value="maintain">Maintain weight</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="edit-activity">Activity Level</label>
+                    <select id="edit-activity" name="activity" required>
+                        <option value="">-- Choose --</option>
+                        <option value="sedentary">Sedentary (little or no exercise)</option>
+                        <option value="light">Lightly active (1-3 days a week)</option>
+                        <option value="moderate">Moderately active (3-5 days a week)</option>
+                        <option value="very">Very active (6-7 days a week)</option>
+                    </select>
+                </div>
+
+                <p id="edit-message" class="message"></p>
+
+                <div class="form-buttons">
+                    <button class="btn green" type="submit">Save Changes</button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Change password -->
+        <section class="card">
+            <h2>Change Password</h2>
+
+            <form id="password-form">
+
+                <div class="field">
+                    <label for="old-password">Old Password</label>
+                    <input type="password" id="old-password" name="old-password" required/>
+                </div>
+
+                <div class="field">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" name="new-password" minlength="8" required/>
+                    <small class="muted">At least 8 characters.</small>
+                </div>
+
+                <div class="field">
+                    <label for="confirm-new-password">Confirm New Password</label>
+                    <input type="password" id="confirm-new-password" name="confirm-new-password" minlength="8" required/>
+                </div>
+
+                <p id="password-message" class="message"></p>
+
+                <div class="form-buttons">
+                    <button class="btn green" type="submit">Change Password</button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Delete account -->
+        <section class="card">
+            <h2>Delete Account</h2>
+            <p class="muted">Deleting your account removes all your data. This cannot be undone.</p>
+
+            <form id="delete-form">
+
+                <div class="field">
+                    <label for="delete-email">Email</label>
+                    <input type="email" id="delete-email" name="email" required/>
+                </div>
+
+                <div class="field">
+                    <label for="delete-password">Password</label>
+                    <input type="password" id="delete-password" name="password" required/>
+                </div>
+
+                <div class="field">
+                    <label for="delete-confirm-password">Confirm Password</label>
+                    <input type="password" id="delete-confirm-password" name="confirm-password" required/>
+                </div>
+
+                <p id="delete-message" class="message"></p>
+
+                <div class="form-buttons">
+                    <button class="btn red" type="submit">Delete</button>
+                    <button class="btn gray" type="reset">Cancel</button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- The "are you sure?" popup, opened by the Delete button -->
+        <dialog id="delete-popup">
+
+            <h2>Are you sure you want to delete your account?</h2>
+
+            <div class="popup-buttons">
+                <button id="delete-yes-btn" class="btn red" type="button">Yes</button>
+                <button id="delete-no-btn" class="btn green" type="button">No</button>
+            </div>
+        </dialog>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="global-footer">
+        <div class="rights">
+            <span>Copyrights © 2026 by </span>
+            <button id="members-btn">Group (1)</button>
+            <span>. All Rights Reserved.</span>
+        </div>
+
+        <!-- the popup, opened when clicking on "Group (1)" (the js is in main.js) -->
+        <dialog id="members-popup" class="group-memebers">
+
+            <button id="members-close-btn" type="button" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <h2>Group (1) Members:</h2>
+
+            <ul id="members-list">
+                <li>
+                    Reda Alqatifi
+                    <a href="https://github.com/Reda-Alqatifi" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/reda-alqatifi-a58515414/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Hassan Almomatten
+                    <a href="https://github.com/krbto" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/hassan-eyad-333465357/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Mohammed Alkhalifa
+                    <a href="https://github.com/stydex" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohammed-al-khalifa-3a5635335/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Ahmed Kouzi
+                    <a href="https://github.com/AhmedK64" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/ahmed-kouzi-969915344/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+                <li>
+                    Redwan Talib
+                    <a href="https://github.com/redwanYtaleb" target="_blank">
+                        <img src="../../../../assets/icons/GitHub.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/redwanytaleb/" target="_blank">
+                        <img src="../../../../assets/icons/Linked In.png" alt="Linked In">
+                    </a>
+                </li>
+            </ul>
+        </dialog>
+
+    </footer>
+
+    <script type="module" src="profile.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
-import '../../main.js';
-// should be "import { getById } from '../../main.js';"  but i make like this just for testing and when i am done i will fix it
+// import '../../main.js';
+import { getById } from '../../main.js';
 
 /*For Today's Consumed vs. Burned Calories */
 const label_for_Today = ["Today's Consumed","Burned Calories"];

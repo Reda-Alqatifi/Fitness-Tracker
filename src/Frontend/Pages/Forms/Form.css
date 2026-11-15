@@ -1,1 +1,176 @@
 @import url("../../global.css");
+
+body {
+    font-family: var(--font-type-1);
+}
+
+/* Header (back button + theme switch) */
+
+#form-nav {
+    background-color: var(--color-navbar);
+    box-shadow: var(--shadow-low-blur) var(--color-shadow);
+
+    height: calc(var(--font-3x-large) * 1.1);
+    padding: 0 var(--space-large);
+    margin-bottom: var(--space-large);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#back {
+    display: flex;
+    align-items: center;
+    gap: var(--space-small);
+
+    color: var(--color-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+#back:hover {
+    color: var(--color-text-hover);
+}
+
+/* The card that holds the form */
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: var(--color-cards);
+    border-radius: var(--radius-mid);
+
+    width: 100%;
+    max-width: var(--size-x-large);
+    padding: var(--space-x-large);
+}
+.card .logo {
+    display: block;
+    margin: 0 auto;
+}
+.card h1 {
+    font-size: var(--font-x-large);
+    text-align: center;
+    margin: var(--space-small) 0;
+}
+.card h2 {
+    font-size: var(--font-mid);
+    margin: var(--space-mid) 0 0;
+}
+.card a {
+    color: var(--color-text);
+    font-weight: bold;
+}
+.card a:hover {
+    color: var(--color-text-hover);
+}
+
+.intro {
+    text-align: center;
+    margin: 0 0 var(--space-mid);
+}
+.muted {
+    opacity: 0.6;
+}
+
+/* The form */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-mid);
+}
+
+/* A label with its input under it */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-x-small);
+}
+.field label,
+legend {
+    font-weight: bold;
+}
+.field input,
+.field select {
+    font-family: inherit;
+    font-size: var(--font-small);
+    color: var(--color-text);
+    background-color: var(--color-background);
+
+    padding: var(--space-small);
+
+    border: var(--border-x-small) solid var(--color-border);
+    border-radius: var(--radius-small);
+}
+.field input:focus,
+.field select:focus {
+    outline: var(--border-small) solid var(--color-text-hover);
+}
+
+/* Radio buttons (gender, goal) */
+fieldset {
+    margin: 0;
+    padding: var(--space-small) var(--space-mid);
+
+    border: var(--border-x-small) solid var(--color-border);
+    border-radius: var(--radius-small);
+}
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-mid);
+}
+
+/* A checkbox or a radio button with its text */
+.choice {
+    display: flex;
+    align-items: center;
+    gap: var(--space-x-small);
+
+    cursor: pointer;
+}
+
+/* The error message (empty until there is an error) */
+#message {
+    color: var(--color-button-1);
+    font-weight: bold;
+    margin: 0;
+}
+
+.submit {
+    /* the text stays white on the green button, in dark mode too */
+    --color-text-2: var(--palette-white);
+
+    color: var(--color-text-2);
+    background-color: var(--color-button-2);
+    font-weight: bold;
+
+    padding: var(--space-small) var(--space-mid);
+    border-radius: var(--radius-full);
+}
+.submit:hover {
+    box-shadow: var(--shadow-low-blur) var(--color-button-2);
+}
+
+/* The link to the other form */
+.other-form {
+    text-align: center;
+    margin: var(--space-mid) 0 0;
+}
+
+/* Smaller screens (phones) */
+
+@media (max-width: 600px) {
+    #form-nav {
+        padding: 0 var(--space-mid);
+    }
+
+    .card {
+        padding: var(--space-large) var(--space-mid);
+    }
+}
