@@ -1,41 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><title>Fitness Tracker - Diet</title></head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light" id="meta-mode">
+
+    <title>Diet - Fitness Tracker</title>
+
+    <link rel="stylesheet" href="diet.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+</head>
+
 <body>
-    <header>
-        <img src="../../../../assets/images/FT logo.png"
-             alt="Fitness Tracker Logo"
-             width="120"
-             height="80"/>
-        <nav>
-            <ul>
-                <li><a href="../home/home.html">Home</a></li>
-                <li><a href="../reports/reports.html">Reports</a></li>
-                <li><a href="../exercises/exercises.html">Exercises</a></li>
-                <li><a href="diet.html">Diet</a></li>
-                <li><a href="../profile/profile.html">Profile</a></li>
-                <li><a href="#">EN / AR</a></li>
-                <li><a href="../../Forms/login.html">Logout</a></li>
-            </ul>
+
+    <!-- Global Header -->
+    <header id="global-header">
+
+        <nav id="nav-bar">
+
+            <img class="logo"
+                src="../../../../assets/images/FT logo.png"
+                alt="FT logo"/>
+
+            <!-- the 3 lines button (only on small screens) -->
+            <button id="menu-btn"
+                    class="btn"
+                    type="button"
+                    aria-label="Menu"
+                    aria-expanded="false">
+
+                <span class="material-symbols-outlined">menu</span>
+
+            </button>
+
+            <div id="sideMenu" class="side-menu">
+
+                <ul>
+
+                    <li>
+                        <a href="../home/home.html">
+                            <span class="material-symbols-outlined">home</span>
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../reports/reports.html">Reports</a>
+                    </li>
+
+                    <li>
+                        <a href="../exercises/exercises.html">Exercises</a>
+                    </li>
+
+                    <li>
+                        <a href="../diet/diet.html" class="selected">Diet</a>
+                    </li>
+
+                    <li>
+                        <a href="../profile/profile.html">Profile</a>
+                    </li>
+
+                </ul>
+
+                <div class="buttons">
+
+                    <button id="logout-btn" class="btn">
+                        logout
+                    </button>
+
+                    <button id="theme-switch" class="btn">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+
+                </div>
+
+            </div>
+
         </nav>
+
+
+        <!-- the logout popup -->
+        <dialog id="logout-popup">
+
+            <h2>Are you sure you want to logout?</h2>
+
+            <div class="popup-buttons">
+
+                <button id="logout-yes-btn" class="btn" type="button">
+                    Yes
+                </button>
+
+                <button id="logout-no-btn" class="btn" type="button">
+                    No
+                </button>
+
+            </div>
+
+        </dialog>
+
     </header>
-    <hr/>
-    <section>
+
+
+
+    <!-- Main Content -->
+    <main>
+
         <h2>Diet</h2>
-        <p>
-            Choose a diet: <!--UR-12-->
-            <a href="#recommended">Recommended</a> | <a href="#meal-form">Custom</a>
-        </p>
-        <article>
+
+        <!-- Diet Selector -->
+        <div class="schedule-selector">
+
+            <button type="button"
+                    id="btn-recommended"
+                    class="schedule-btn active">
+                Recommended Diet
+            </button>
+
+            <button type="button"
+                    id="btn-custom"
+                    class="schedule-btn">
+                Custom Diet
+            </button>
+
+        </div>
+
+
+        <!-- Recommended Diet -->
+        <article id="recommended-section">
+
             <header>
-                <h3 id="recommended">Recommended Diet</h3>
+                <h3>Recommended Diet</h3>
             </header>
+
             <p>
                 These are your recommended meals for the day.
                 You can add your own meals, edit them, or delete them.
             </p>
-            <table border="1" cellpadding="5" cellspacing="0">
+
+            <table>
+
                 <caption>Today's Recommended Meals</caption>
+
                 <thead>
                     <tr>
                         <th>Meal Name</th>
@@ -46,7 +154,9 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+
+                <tbody id="recommended-meals">
+
                     <tr>
                         <td>Oatmeal with Milk</td>
                         <td>15</td>
@@ -54,10 +164,20 @@
                         <td>10</td>
                         <td>350</td>
                         <td>
-                            <a href="#meal-form">Edit</a>
-                            <button type="button">Delete</button>
+                            <button type="button"
+                                    class="edit-btn"
+                                    data-action="edit">
+                                Edit
+                            </button>
+
+                            <button type="button"
+                                    class="delete-btn"
+                                    data-action="delete">
+                                Delete
+                            </button>
                         </td>
                     </tr>
+
                     <tr>
                         <td>Grilled Chicken</td>
                         <td>40</td>
@@ -65,10 +185,20 @@
                         <td>12</td>
                         <td>400</td>
                         <td>
-                            <a href="#meal-form">Edit</a>
-                            <button type="button">Delete</button>
+                            <button type="button"
+                                    class="edit-btn"
+                                    data-action="edit">
+                                Edit
+                            </button>
+
+                            <button type="button"
+                                    class="delete-btn"
+                                    data-action="delete">
+                                Delete
+                            </button>
                         </td>
                     </tr>
+
                     <tr>
                         <td>Greek Yogurt</td>
                         <td>20</td>
@@ -76,22 +206,39 @@
                         <td>5</td>
                         <td>185</td>
                         <td>
-                            <a href="#meal-form">Edit</a>
-                            <button type="button">Delete</button>
+                            <button type="button"
+                                    class="edit-btn"
+                                    data-action="edit">
+                                Edit
+                            </button>
+
+                            <button type="button"
+                                    class="delete-btn"
+                                    data-action="delete">
+                                Delete
+                            </button>
                         </td>
                     </tr>
+
                 </tbody>
             </table>
+
         </article>
-        <hr/>
-        <article>
+
+
+        <!-- Custom Diet -->
+        <article id="custom-section">
+
             <header>
-                <h3 id="custom">Custom Diet</h3>
+                <h3>Custom Diet</h3>
             </header>
+
             <p>
                 These are the meals you added yourself.
             </p>
-            <table border="1" cellpadding="5" cellspacing="0">
+
+            <table>
+
                 <caption>My Meals</caption>
 
                 <thead>
@@ -104,7 +251,9 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+
+                <tbody id="custom-meals">
+
                     <tr>
                         <td>Egg Sandwich</td>
                         <td>18</td>
@@ -112,10 +261,20 @@
                         <td>14</td>
                         <td>340</td>
                         <td>
-                            <a href="#meal-form">Edit</a>
-                            <button type="button">Delete</button>
+                            <button type="button"
+                                    class="edit-btn"
+                                    data-action="edit">
+                                Edit
+                            </button>
+
+                            <button type="button"
+                                    class="delete-btn"
+                                    data-action="delete">
+                                Delete
+                            </button>
                         </td>
                     </tr>
+
                     <tr>
                         <td>Protein Shake</td>
                         <td>25</td>
@@ -123,155 +282,346 @@
                         <td>4</td>
                         <td>180</td>
                         <td>
-                            <a href="#meal-form">Edit</a>
-                            <button type="button">Delete</button>
+                            <button type="button"
+                                    class="edit-btn"
+                                    data-action="edit">
+                                Edit
+                            </button>
+
+                            <button type="button"
+                                    class="delete-btn"
+                                    data-action="delete">
+                                Delete
+                            </button>
                         </td>
                     </tr>
+
                 </tbody>
             </table>
+
             <p>
-                <a href="#meal-form">Add Meal</a>
+                <button type="button" id="add-meal-btn">
+                    Add Meal
+                </button>
             </p>
+
         </article>
 
-        <hr/>
-        <article>
+
+        <!-- Daily Nutrition -->
+        <article id="daily-nutrition">
+
             <header>
-                <h3>Daily Nutrition</h3> <!--UR-15-->
+                <h3>Daily Nutrition</h3>
             </header>
-            <h4>Calories Consumed</h4>
-            <p>
-                Daily Calorie Target: 2000 kcal
-            </p>
-            <p>
-                Calories Consumed: 1275 kcal
-            </p>
-            <progress value="1275" max="2000">
-                1275 out of 2000 kcal
-            </progress>
-            <p>
-                725 kcal remaining
-            </p>
-            <hr/>
-            <h4>Macronutrient Comparison</h4>
-            <table border="1" cellpadding="5" cellspacing="0">
-                <caption>Daily Macronutrients</caption> <!--UR-14-->
-                <thead>
-                    <tr>
-                        <th>Nutrient</th>
-                        <th>Consumed (g)</th>
-                        <th>Recommended (g)</th>
-                        <th>Progress</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Protein</td>
-                        <td>93</td>
-                        <td>150</td>
-                        <td>
-                            <progress value="93" max="150">
-                                93 out of 150
-                            </progress>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Carbohydrates</td>
-                        <td>142</td>
-                        <td>250</td>
-                        <td>
-                            <progress value="142" max="250">
-                                142 out of 250
-                            </progress>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fats</td>
-                        <td>45</td>
-                        <td>65</td>
-                        <td>
-                            <progress value="45" max="65">
-                                45 out of 65
-                            </progress>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <!-- Calories -->
+            <section id="calorie-summary">
+
+                <h4>Calories Consumed</h4>
+
+                <p>
+                    Daily Calorie Target:
+                    <strong id="calorie-target">2000</strong> kcal
+                </p>
+
+                <p>
+                    Calories Consumed:
+                    <strong id="calories-consumed">1275</strong> kcal
+                </p>
+
+                <progress id="calorie-progress"
+                          value="1275"
+                          max="2000">
+                    1275 out of 2000 kcal
+                </progress>
+
+                <p>
+                    <strong id="calories-remaining">725</strong>
+                    kcal remaining
+                </p>
+
+            </section>
+
+
+            <hr>
+
+
+            <!-- Macronutrients -->
+            <section id="macronutrient-summary">
+
+                <h4>Macronutrient Comparison</h4>
+
+                <table>
+
+                    <caption>Daily Macronutrients</caption>
+
+                    <thead>
+                        <tr>
+                            <th>Nutrient</th>
+                            <th>Consumed (g)</th>
+                            <th>Recommended (g)</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Protein</td>
+                            <td id="protein-consumed">93</td>
+                            <td id="protein-recommended">150</td>
+                            <td>
+                                <progress id="protein-progress"
+                                          value="93"
+                                          max="150">
+                                    93 out of 150
+                                </progress>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Carbohydrates</td>
+                            <td id="carbs-consumed">142</td>
+                            <td id="carbs-recommended">250</td>
+                            <td>
+                                <progress id="carbs-progress"
+                                          value="142"
+                                          max="250">
+                                    142 out of 250
+                                </progress>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Fats</td>
+                            <td id="fats-consumed">45</td>
+                            <td id="fats-recommended">65</td>
+                            <td>
+                                <progress id="fats-progress"
+                                          value="45"
+                                          max="65">
+                                    45 out of 65
+                                </progress>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </section>
+
         </article>
-        <hr/>
-        <article>
+
+
+        <!-- Add or Edit Meal Form -->
+        <article id="meal-form-section">
+
             <header>
-                <h3 id="meal-form">Add or Edit Meal</h3> <!--UR-16-->
+                <h3 id="meal-form-title">Add Meal</h3>
             </header>
-            <form action="#" method="post">
+
+            <form id="meal-form" novalidate>
+
                 <p>
                     <label for="meal-name">Meal Name:</label>
-                    <input
-                        type="text"
-                        id="meal-name"
-                        name="meal-name"
-                        required/>
+
+                    <input type="text"
+                           id="meal-name"
+                           name="meal-name"
+                           required>
                 </p>
+
                 <p>
                     <label for="protein">Protein (g):</label>
-                    <input
-                        type="number"
-                        id="protein"
-                        name="protein"
-                        min="0"
-                        step="0.1"
-                        required/>
+
+                    <input type="number"
+                           id="protein"
+                           name="protein"
+                           min="0"
+                           step="0.1"
+                           required>
                 </p>
+
                 <p>
                     <label for="carbohydrates">Carbohydrates (g):</label>
-                    <input
-                        type="number"
-                        id="carbohydrates"
-                        name="carbohydrates"
-                        min="0"
-                        step="0.1"
-                        required/>
+
+                    <input type="number"
+                           id="carbohydrates"
+                           name="carbohydrates"
+                           min="0"
+                           step="0.1"
+                           required>
                 </p>
+
                 <p>
                     <label for="fats">Fats (g):</label>
-                    <input
-                        type="number"
-                        id="fats"
-                        name="fats"
-                        min="0"
-                        step="0.1"
-                        required/>
+
+                    <input type="number"
+                           id="fats"
+                           name="fats"
+                           min="0"
+                           step="0.1"
+                           required>
                 </p>
+
                 <p>
                     <label for="calories">Calories (kcal):</label>
-                    <input
-                        type="number"
-                        id="calories"
-                        name="calories"
-                        min="0"
-                        step="1"
-                        required/>
+
+                    <input type="number"
+                           id="calories"
+                           name="calories"
+                           min="0"
+                           step="1"
+                           required>
                 </p>
+
                 <p>
-                    <button type="submit">Save Meal</button>
-                    <button type="reset">Clear Form</button>
+                    <button type="submit" id="save-meal-btn">
+                        Save Meal
+                    </button>
+
+                    <button type="reset" id="clear-form-btn">
+                        Clear Form
+                    </button>
                 </p>
+
             </form>
+
         </article>
-    </section>
-    <hr/>
-    <footer>
-        <p>&copy; Group(1) - Fitness Tracker</p>
-        <ul>
-            <li>Reda Alqatifi</li>
-            <li>Hassan Almomatten</li>
-            <li>Mohammed Alkhalifah</li>
-            <li>Ahmed Koozi</li>
-            <li>Redwan Talib</li>
-        </ul>
-        <p>
-            <a href="#top">Back to Top</a>
-        </p>
+
+    </main>
+
+
+    <!-- Global Footer -->
+    <footer id="global-footer">
+
+        <div class="rights">
+
+            <span>Copyrights © 2026 by </span>
+
+            <button type="button" id="members-btn">
+                Group (1)
+            </button>
+
+            <span>. All Rights Reserved.</span>
+
+        </div>
+
+
+        <!-- Group Members Dialog -->
+        <dialog id="members-popup" class="group-memebers">
+
+            <button id="members-close-btn"
+                    type="button"
+                    aria-label="Close">
+
+                <span class="material-symbols-outlined">close</span>
+
+            </button>
+
+            <h2>Group (1) Members:</h2>
+
+            <ul id="members-list">
+
+                <li>
+                    Reda Alqatifi
+
+                    <a href="https://github.com/Reda-Alqatifi"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/GitHub.png"
+                             alt="GitHub">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/reda-alqatifi-a58515414/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/Linked In.png"
+                             alt="LinkedIn">
+                    </a>
+                </li>
+
+                <li>
+                    Hassan Almomatten
+
+                    <a href="https://github.com/krbto"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/GitHub.png"
+                             alt="GitHub">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/hassan-eyad-333465357/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/Linked In.png"
+                             alt="LinkedIn">
+                    </a>
+                </li>
+
+                <li>
+                    Mohammed Alkhalifa
+
+                    <a href="https://github.com/stydex"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/GitHub.png"
+                             alt="GitHub">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/mohammed-al-khalifa-3a5635335/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/Linked In.png"
+                             alt="LinkedIn">
+                    </a>
+                </li>
+
+                <li>
+                    Ahmed Kouzi
+
+                    <a href="https://github.com/AhmedK64"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/GitHub.png"
+                             alt="GitHub">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/ahmed-kouzi-969915344/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/Linked In.png"
+                             alt="LinkedIn">
+                    </a>
+                </li>
+
+                <li>
+                    Redwan Talib
+
+                    <a href="https://github.com/redwanYtaleb"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/GitHub.png"
+                             alt="GitHub">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/redwanytaleb/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <img src="../../../../assets/icons/Linked In.png"
+                             alt="LinkedIn">
+                    </a>
+                </li>
+
+            </ul>
+
+        </dialog>
+
     </footer>
+
+
+    <script type="module" src="diet.js"></script>
+
 </body>
 </html>

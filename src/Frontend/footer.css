@@ -133,3 +133,26 @@
 
     transition: var(--transtion-fast);
 }
+
+/* ////////////// */
+
+/* ! smaller screens */
+
+/* phones */
+@media (max-width: 600px) {
+    /* the text can take more than one line */
+    #global-footer {
+        font-size: var(--font-small);
+        height: auto;
+    }
+
+    #global-footer #members-popup {
+        padding: var(--space-large);
+    }
+    #global-footer #members-list {
+        column-gap: var(--space-mid);
+    }
+    #global-footer img {
+        width: calc(var(--size-2x-small) * 0.7);
+    }
+}
