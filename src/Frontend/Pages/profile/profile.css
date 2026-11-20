@@ -1,1 +1,210 @@
 @import url("../../global.css");
+
+main {
+    font-family: var(--font-type-1);
+}
+
+/* Page container (the cards are under each other) */
+
+#profile {
+    width: 100%;
+    max-width: var(--size-4x-large);
+    margin: var(--space-x-large) auto;
+    padding: 0 var(--space-mid);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-mid);
+}
+
+/* Cards */
+
+.card {
+    background-color: var(--color-cards);
+    border-radius: var(--radius-mid);
+
+    padding: var(--space-large);
+}
+.card h2 {
+    font-size: var(--font-mid);
+    margin: 0 0 var(--space-mid);
+}
+.muted {
+    opacity: 0.6;
+}
+
+/* My information card (the picture beside the table) */
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-x-large);
+}
+.info #account-picture {
+    flex-shrink: 0;
+}
+.info-text {
+    flex: 1;
+}
+.info h1 {
+    font-size: var(--font-x-large);
+    margin: 0 0 var(--space-small);
+}
+
+#info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#info-table th,
+#info-table td {
+    text-align: left;
+    padding: var(--space-small) 0;
+    border-bottom: var(--border-x-small) solid var(--color-button-3);
+}
+#info-table th {
+    font-weight: normal;
+    opacity: 0.6;
+}
+#info-table td {
+    font-weight: bold;
+}
+
+/* Forms (two fields in each row) */
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-mid);
+}
+
+/* A label with its input under it */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-x-small);
+}
+.field label {
+    font-weight: bold;
+}
+.field input,
+.field select {
+    font-family: inherit;
+    font-size: var(--font-small);
+    color: var(--color-text);
+    background-color: var(--color-background);
+
+    padding: var(--space-small);
+
+    border: var(--border-x-small) solid var(--color-border);
+    border-radius: var(--radius-small);
+}
+.field input:focus,
+.field select:focus {
+    outline: var(--border-small) solid var(--color-text-hover);
+}
+
+/* The message and the buttons take the full row */
+.message,
+.form-buttons {
+    grid-column: 1 / -1;
+}
+
+/* Red for errors, green for success (empty until the form is sent) */
+.message {
+    color: var(--color-button-1);
+    font-weight: bold;
+    margin: 0;
+}
+.message.success {
+    color: var(--color-button-2);
+}
+
+/* Buttons */
+
+.form-buttons,
+.popup-buttons {
+    display: flex;
+    gap: var(--space-mid);
+}
+
+.green,
+.red,
+.gray {
+    font-weight: bold;
+
+    padding: var(--space-small) var(--space-large);
+    border-radius: var(--radius-full);
+}
+.green,
+.red {
+    /* the text stays white on the green and red buttons, in dark mode too */
+    --color-text-2: var(--palette-white);
+
+    color: var(--color-text-2);
+}
+.green {
+    background-color: var(--color-button-2);
+}
+.red {
+    background-color: var(--color-button-1);
+}
+.gray {
+    color: var(--color-text);
+    background-color: var(--color-button-3);
+}
+
+/* The delete popup (same look as the logout popup) */
+
+#delete-popup {
+    --color-text: var(--palette-white);
+
+    color: var(--color-text);
+    background-color: var(--color-account-background);
+
+    padding: var(--space-x-large);
+
+    border: var(--border-mid) solid var(--color-account-border);
+    border-radius: var(--radius-mid);
+}
+/* only when the popup is open */
+#delete-popup[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-large);
+}
+#delete-popup h2 {
+    font-size: var(--font-mid);
+    text-align: center;
+    margin: 0;
+}
+
+/* Smaller screens (phones) */
+
+@media (max-width: 600px) {
+    #profile {
+        margin: var(--space-mid) auto;
+        padding: 0;
+    }
+
+    .card {
+        padding: var(--space-mid);
+    }
+
+    /* the picture above the table */
+    .info {
+        flex-direction: column;
+        gap: var(--space-mid);
+    }
+    .info-text {
+        width: 100%;
+    }
+    .info h1 {
+        text-align: center;
+    }
+
+    /* one field in each row */
+    form {
+        grid-template-columns: 1fr;
+    }
+}
