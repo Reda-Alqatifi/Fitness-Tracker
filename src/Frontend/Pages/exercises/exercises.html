@@ -12,37 +12,95 @@
     <!--! to use some google symbols, like Home icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
 </head>
-</head>
+
 <body>
 
+    <!-- Global Header -->
     <header id="global-header">
 
         <nav id="nav-bar">
 
-            <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+            <img class="logo"
+                src="../../../../assets/images/FT logo.png"
+                alt="FT logo"/>
+
+            <!-- the 3 lines button (only on small screens) -->
+            <button id="menu-btn"
+                    class="btn"
+                    type="button"
+                    aria-label="Menu"
+                    aria-expanded="false">
+
+                <span class="material-symbols-outlined">menu</span>
+
+            </button>
 
             <div id="sideMenu" class="side-menu">
+
                 <ul>
-                    <li><a href="../home/home.html">
-                        <span class="material-symbols-outlined">home</span>
-                        Home
-                    </a></li>
-                    <li><a href="../reports/reports.html">Reports</a></li>
-                    <li><a href="../exercises/exercises.html" class="selected">Exercises</a></li>
-                    <li><a href="../diet/diet.html">Diet</a></li>
-                    <li><a href="../profile/profile.html">Profile</a></li>
+
+                    <li>
+                        <a href="../home/home.html">
+                            <span class="material-symbols-outlined">home</span>
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../reports/reports.html">Reports</a>
+                    </li>
+
+                    <li>
+                        <a href="../exercises/exercises.html" class="selected">Exercises</a>
+                    </li>
+
+                    <li>
+                        <a href="../diet/diet.html" >Diet</a>
+                    </li>
+
+                    <li>
+                        <a href="../profile/profile.html">Profile</a>
+                    </li>
+
                 </ul>
 
                 <div class="buttons">
-                    <button id="logout-btn" class="btn">logout</button>
+
+                    <button id="logout-btn" class="btn">
+                        logout
+                    </button>
 
                     <button id="theme-switch" class="btn">
                         <span class="material-symbols-outlined">dark_mode</span>
                         <span class="material-symbols-outlined">light_mode</span>
                     </button>
+
                 </div>
+
             </div>
+
         </nav>
+
+
+        <!-- the logout popup -->
+        <dialog id="logout-popup">
+
+            <h2>Are you sure you want to logout?</h2>
+
+            <div class="popup-buttons">
+
+                <button id="logout-yes-btn" class="btn" type="button">
+                    Yes
+                </button>
+
+                <button id="logout-no-btn" class="btn" type="button">
+                    No
+                </button>
+
+            </div>
+
+        </dialog>
+
     </header>
 
     <!-- Main content -->
