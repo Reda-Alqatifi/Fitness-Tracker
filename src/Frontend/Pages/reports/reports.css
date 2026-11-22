@@ -1,36 +1,54 @@
 @import url("../../global.css");
 
+/* !page container */
 #wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 100%;
+    max-width: calc(var(--size-4x-large) + var(--size-large));   /* 1100px */
+    margin: var(--space-x-large) auto;
+    padding: 0 var(--space-mid);
+
+    font-family: var(--font-type-1);
     text-align: center;
 }
-
-.FirstRow,
-.SecondRow {
-    display: flex;
-    gap: 25px;
-    margin-bottom: 25px;
+#wrapper main {
+    margin: 0;
+}
+#wrapper hr {
+    border: none;
+    border-top: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+    margin: 0 0 var(--space-large);
 }
 
+/* //////////////// */
+
+/* !charts */
+.FirstRow,
+.SecondRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-large);
+    margin-bottom: var(--space-large);
+}
 .FirstRow section,
 .SecondRow section {
-    flex: 1;
     min-width: 0;
+}
+.FirstRow h3,
+.SecondRow h3 {
+    font-size: var(--font-mid);
 }
 
 .chart_contanor {
-    position: relative;   
-    width: 500px;         
-    max-width: 100%;        
+    position: relative;
+    width: 100%;
     height: 300px;
-    border: 3px solid #000000; 
-    border-radius: 20px;
-    padding: 15px;         
-    margin-bottom: 20px;
-}
 
+    background-color: var(--color-cards);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+    border-radius: var(--radius-mid);
+
+    padding: var(--space-mid);
+}
 .chart_contanor canvas {
     width: 100% !important;
     height: 100% !important;
@@ -42,120 +60,174 @@
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90px;  /* يمكنك تكبيرها أو تصغيرها لتناسب حجم الـ 500px */
+
+    width: 90px;
     height: 90px;
 }
-
-/* هذا الجزء ضروري لضبط مقاس الصورة داخل الـ div */
 .Centered_Icone img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border-radius: var(--radius-full);
 }
 
-/* =========================================
-   Timeframe Selection Controls
-   ========================================= */
+/* //////////////// */
+
+/* !timeframe controls */
 .timeframe-controls {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 3px solid #000000;
-    border-radius: 15px;
-    margin-bottom: 25px;
-}
+    gap: var(--space-mid);
 
+    padding: var(--space-large);
+    margin-bottom: var(--space-large);
+
+    background-color: var(--color-cards);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+    border-radius: var(--radius-mid);
+}
 .timeframe-controls label {
     font-weight: bold;
-    font-size: 16px;
-    color: #333;
+    font-size: var(--font-small);
+    color: var(--color-text);
 }
-
 .timeframe-controls select {
-    padding: 10px 15px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: var(--space-small) var(--space-mid);
+    font-size: calc(var(--font-small) * 0.9);
+
+    color: var(--color-text);
+    background-color: var(--color-cards);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-mid), transparent);
+    border-radius: var(--radius-small);
+
     outline: none;
     cursor: pointer;
-    background-color: #fff;
 }
-
 .timeframe-controls select:focus {
-    border-color: #ff7722;
+    border-color: var(--color-border-3);
 }
 
 #exportPdfBtn {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: var(--space-small) var(--space-large);
+    font-size: calc(var(--font-small) * 0.9);
     font-weight: bold;
-    color: #fff;
-    background-color: #ff7722;
+
+    color: var(--palette-white);
+    background-color: var(--color-graphs-1);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-small);
+
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: box-shadow var(--transition-mid);
 }
-
 #exportPdfBtn:hover {
-    background-color: #e66611;
+    box-shadow: var(--shadow-low-blur) var(--color-text-hover);
 }
 
-/* =========================================
-   Historical Records Table
-   ========================================= */
+/* //////////////// */
+
+/* !records table */
 .table-section {
-    margin-top: 30px;
+    margin-top: var(--space-x-large);
     text-align: left;
 }
-
 .table-section h3 {
     text-align: center;
-    margin-bottom: 15px;
+    font-size: var(--font-mid);
+    margin-bottom: var(--space-mid);
 }
 
-/* Responsive wrapper to prevent table from breaking layout on small screens */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
-    border: 3px solid #000000;
-    border-radius: 15px;
-    background-color: #fff;
+
+    background-color: var(--color-cards);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+    border-radius: var(--radius-mid);
 }
 
 #reportsDataTable {
     width: 100%;
+    min-width: 600px;
+    border: none;
     border-collapse: collapse;
-    min-width: 700px; /* Forces scrolling on very small screens */
 }
-
 #reportsDataTable th,
 #reportsDataTable td {
-    padding: 15px;
+    padding: var(--space-mid);
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    border: none;
+    border-bottom: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
 }
-
 #reportsDataTable th {
-    background-color: rgba(255, 119, 34, 0.15); /* Matches your line chart fill */
-    color: #333;
+    background-color: var(--color-background-selected);
+    color: var(--color-text);
     font-weight: bold;
+    font-size: calc(var(--font-small) * 0.85);
     text-transform: uppercase;
-    font-size: 14px;
 }
-
+#reportsDataTable tbody tr {
+    transition: background-color var(--transition-fast);
+}
 #reportsDataTable tbody tr:hover {
-    background-color: #f1f1f1;
-    transition: background-color 0.2s ease;
+    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
 }
-
-/* Removes border from the very last row to keep the rounded corners looking clean */
 #reportsDataTable tbody tr:last-child td {
     border-bottom: none;
+}
+
+/* //////////////// */
+
+/* ! smaller screens */
+
+/* tablets */
+@media (max-width: 900px) {
+    .FirstRow,
+    .SecondRow {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* phones */
+@media (max-width: 600px) {
+    #wrapper {
+        margin: var(--space-mid) auto;
+    }
+
+    .FirstRow,
+    .SecondRow {
+        gap: var(--space-mid);
+        margin-bottom: var(--space-mid);
+    }
+
+    .chart_contanor {
+        height: 240px;
+        padding: var(--space-small);
+    }
+
+    .Centered_Icone {
+        width: 60px;
+        height: 60px;
+    }
+
+    .timeframe-controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--space-mid);
+    }
+    .timeframe-controls select,
+    #exportPdfBtn {
+        width: 100%;
+    }
+
+    #reportsDataTable th,
+    #reportsDataTable td {
+        padding: var(--space-small);
+    }
 }

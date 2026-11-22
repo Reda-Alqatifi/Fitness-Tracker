@@ -6,19 +6,24 @@
     <meta name="color-scheme" content="only light" id="meta-mode">
     <title>Reports & Analytics - Fitness Tracker</title>
 
+    <link rel="icon" type="image/png" href="../../../../assets/images/FT logo.png" />
+
     <link rel="stylesheet" href="reports.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
-
-    
 </head>
 <body>
 
-        <!-- !     H E A D E R     -->
+    <!-- !     H E A D E R     -->
     <header id="global-header">
 
         <nav id="nav-bar">
 
             <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+
+            <!-- the 3 lines button (only on small screens) -->
+            <button id="menu-btn" class="btn" type="button" aria-label="Menu" aria-expanded="false">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
 
             <div id="sideMenu" class="side-menu">
                 <ul>
@@ -42,9 +47,18 @@
                 </div>
             </div>
         </nav>
-    </header>
 
-    <hr>
+        <!-- ! the logout popup -->
+        <dialog id="logout-popup">
+
+            <h2>Are you sure you want to logout?</h2>
+
+            <div class="popup-buttons">
+                <button id="logout-yes-btn" class="btn" type="button">Yes</button>
+                <button id="logout-no-btn" class="btn" type="button">No</button>
+            </div>
+        </dialog>
+    </header>
 
     <!-- Timeframe Selection -->
      <div id="wrapper">
