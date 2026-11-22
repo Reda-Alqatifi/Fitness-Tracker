@@ -17,7 +17,25 @@ const weightData = [82, 81.2, 80.5, 79.8, 79];
 
 
 Chart.defaults.font.family = "'Helvetica Neue', 'Arial', sans-serif";
-Chart.defaults.color = '#000000';
+
+// chart text and grid colors that follow the theme (dark / light)
+function applyChartTheme(charts = []) {
+    const isDark = document.body.classList.contains("darkmode");
+    const text = isDark ? "#ffffff" : "#000000";
+    const grid = isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)";
+
+    Chart.defaults.color = text;
+    Chart.defaults.borderColor = grid;
+
+    for (const chart of charts) {
+        for (const scale of Object.values(chart.options.scales || {})) {
+            scale.ticks.color = text;
+            scale.grid.color = grid;
+        }
+        chart.update();
+    }
+}
+applyChartTheme();
 
 
 /*Chart for Today's Consumed vs. Burned Calories */
@@ -144,6 +162,11 @@ const Weight_Chart = new Chart('weightCanvas', {
     }
   }
 });
+
+// redraw the charts when the theme is switched
+new MutationObserver(() => {
+    applyChartTheme([TodayChart, Burned_Calories_Chart, Steps_Chart, Weight_Chart]);
+}).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
 // ! reports page data (from the backend)
  
