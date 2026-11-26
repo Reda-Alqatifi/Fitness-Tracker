@@ -70,12 +70,51 @@
             <option value="year">Last Year</option>
             <option value="custom">Custom Period</option>
         </select>
+        <!-- Only shown when "Custom Period" is chosen -->
+        <span id="customRange" hidden>
+            <label for="fromDate">From:</label>
+            <input type="date" id="fromDate">
+            <label for="toDate">To:</label>
+            <input type="date" id="toDate">
+        </span>
         <button type="button" id="exportPdfBtn" onclick="window.print()">Export to PDF</button>
     </section>
 
     <hr>
 
     <main>
+        <!-- 0. Current Status (filled by reports.js, "--" until the backend sends it) -->
+        <section id="status">
+            <h3>Current Status</h3>
+            <div class="status-grid">
+                <div class="status-item">
+                    <span class="status-label">Weight</span>
+                    <span class="status-value"><span id="statusWeight">--</span> kg</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Height</span>
+                    <span class="status-value"><span id="statusHeight">--</span> cm</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">BMI</span>
+                    <span class="status-value"><span id="statusBmi">--</span></span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">SMM *</span>
+                    <span class="status-value"><span id="statusSmm">--</span> kg</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">PBF *</span>
+                    <span class="status-value"><span id="statusPbf">--</span> %</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">BFM *</span>
+                    <span class="status-value"><span id="statusBfm">--</span> kg</span>
+                </div>
+            </div>
+            <p class="status-note">* Estimated from your BMI, age, and gender (not measured).</p>
+        </section>
+
         <!-- 1. Today's Consumed vs Burned Calories -->
          <div class = FirstRow >
             <section id="todayCalories">

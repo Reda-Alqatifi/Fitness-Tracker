@@ -197,6 +197,16 @@ fieldset label {
   margin-bottom: 10px;
 }
 
+/* The reason from the backend (red), empty until saving fails */
+.message {
+  color: var(--color-button-1);
+  font-weight: bold;
+}
+
+.message:empty {
+  display: none;
+}
+
 /* 5. Buttons */
 button,
 input[type="submit"],

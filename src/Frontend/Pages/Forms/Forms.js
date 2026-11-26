@@ -1,4 +1,4 @@
-import { getById } from "../../main.js";
+import { getById, sendToBackend } from "../../main.js";
 
 // Login and register forms (sent to the backend)
 
@@ -19,8 +19,8 @@ import { getById } from "../../main.js";
             { "message": "Wrong email or password" }
 */
 
-const LOGIN_API = "../../../Backend/[login.php]"; //! [Backend]
-const REGISTER_API = "../../../Backend/[register.php]"; //! [Backend]
+const LOGIN_API = "../../../Backend/Registration/[login.php]"; //! [Backend]
+const REGISTER_API = "../../../Backend/Registration/[register.php]"; //! [Backend]
 const HOME_PAGE = "../home/home.html";
 
 // Each page has only one of the two forms
@@ -30,27 +30,11 @@ const message = getById("message");
 
 // Send the form to the backend, then go to the home page
 async function sendForm(form, api) {
-    message.textContent = "";
+    //! sendToBackend() is in main.js (401 here means "wrong email or password", so no redirect)
+    const sent = await sendToBackend(api, new FormData(form), message, { redirectOn401: false });
 
-    try {
-        const response = await fetch(api, {
-            method: "POST",
-            body: new FormData(form),
-            credentials: "same-origin",
-        });
-
-        if (response.ok) {
-            window.location.href = HOME_PAGE;
-            return;
-        }
-
-        // show the reason from the backend
-        const data = await response.json();
-        message.textContent = data.message || "Something went wrong.";
-    } catch (error) {
-        // the backend is not ready or failed
-        console.warn("Could not send the form:", error);
-        message.textContent = "Could not reach the server. Please try again later.";
+    if (sent) {
+        window.location.href = HOME_PAGE;
     }
 }
 

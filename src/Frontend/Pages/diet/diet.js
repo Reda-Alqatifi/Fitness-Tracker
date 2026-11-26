@@ -1,4 +1,49 @@
-import { getById } from '../../main.js';
+import { getById, getFromBackend, sendToBackend } from '../../main.js';
+
+// ////////////////////////////
+
+// ! diet page data (from the backend)
+
+/*
+    Loading the diet:
+        GET diet.php
+        200 -> success to access the data
+        401 -> not logged in (the page redirects to the login page)
+
+    Expected response (ex) from backend (200):
+        {
+            "mode": "recommended",
+            "targets": { "calories": 2400, "protein": 140, "carbohydrates": 280, "fats": 67 },
+            "meals": [
+                { "id": 12, "name": "Grilled Chicken", "protein": 40, "carbohydrates": 30,
+                  "fats": 12, "calories": 400, "source": "recommended" }
+            ]
+        }
+        (source = "recommended" goes to the first table, "custom" goes to the second)
+
+    The forms are sent as form data (POST), so the backend can read them using $_POST:
+        diet_mode.php   -> mode (recommended | custom)
+        meal_add.php    -> meal-name, protein, carbohydrates, fats, calories
+        meal_edit.php   -> id + the same fields as meal_add.php
+        meal_delete.php -> id
+
+    Responses of the forms:
+        200   -> success
+        other -> failed, with the reason to show it under the form (ex):
+            { "message": "Meal not found" }
+
+    Until the backend is ready, the page works only in the browser
+    with the meals written in diet.html (nothing is saved).
+*/
+
+const DIET_API = "../../../Backend/Diet/[diet.php]"; //! [Backend]
+const DIET_MODE_API = "../../../Backend/Diet/[diet_mode.php]"; //! [Backend]
+const MEAL_ADD_API = "../../../Backend/Diet/[meal_add.php]"; //! [Backend]
+const MEAL_EDIT_API = "../../../Backend/Diet/[meal_edit.php]"; //! [Backend]
+const MEAL_DELETE_API = "../../../Backend/Diet/[meal_delete.php]"; //! [Backend]
+
+// true after the diet is loaded from the backend
+let backendReady = false;
 
 // ////////////////////////////
 
@@ -177,6 +222,68 @@ function renderDiet() {
 
 // ////////////////////////////
 
+// ! backend requests
+
+// The line under the meal form that shows the reason from the backend
+const mealMessage = getById("meal-message");
+
+function showMessage(text) {
+    mealMessage.textContent = text;
+}
+
+// Get the meals and the targets of the logged-in user
+async function loadDiet(useSavedMode = false) {
+    try {
+        //! getFromBackend() is in main.js
+        const data = await getFromBackend(DIET_API);
+
+        // go back to the login page
+        if (!data) {
+            return;
+        }
+
+        const meals = data.meals || [];
+        const targets = data.targets || {};
+
+        backendReady = true;
+
+        recommendedMeals = meals.filter(meal => meal.source === "recommended");
+        customMeals = meals.filter(meal => meal.source === "custom");
+
+        getById("calorie-target").textContent = targets.calories ?? 0;
+        getById("protein-recommended").textContent = targets.protein ?? 0;
+        getById("carbs-recommended").textContent = targets.carbohydrates ?? 0;
+        getById("fats-recommended").textContent = targets.fats ?? 0;
+
+        renderDiet();
+
+        if (useSavedMode && data.mode) {
+            showDiet(data.mode);
+        }
+    } catch (error) {
+        // the backend is not ready or failed, so the page keeps the meals in diet.html
+        console.warn("Could not load the diet data:", error);
+    }
+}
+
+// Save the chosen diet (recommended / custom)
+async function saveMode(type) {
+    if (!backendReady) {
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("mode", type);
+
+    // choosing "recommended" adds today's recommended meals, so load them
+    //! sendToBackend() is in main.js
+    if (await sendToBackend(DIET_MODE_API, formData, mealMessage)) {
+        await loadDiet();
+    }
+}
+
+// ////////////////////////////
+
 // ! recommended / custom selector
 
 function showDiet(type) {
@@ -191,10 +298,12 @@ function showDiet(type) {
 
 recommendedBtn.addEventListener("click", () => {
     showDiet("recommended");
+    saveMode("recommended");
 });
 
 customBtn.addEventListener("click", () => {
     showDiet("custom");
+    saveMode("custom");
 });
 
 // ////////////////////////////
@@ -243,7 +352,7 @@ function editMeal(type, index) {
 
 // ! delete meal
 
-function deleteMeal(type, index) {
+async function deleteMeal(type, index) {
     const meals = type === "recommended"
         ? recommendedMeals
         : customMeals;
@@ -255,6 +364,18 @@ function deleteMeal(type, index) {
     const confirmed = confirm("Are you sure you want to delete this meal?");
 
     if (!confirmed) {
+        return;
+    }
+
+    // delete it from the database, then load the meals again
+    if (backendReady) {
+        const formData = new FormData();
+        formData.append("id", meals[index].id);
+
+        //! sendToBackend() is in main.js
+        if (await sendToBackend(MEAL_DELETE_API, formData, mealMessage)) {
+            await loadDiet();
+        }
         return;
     }
 
@@ -307,6 +428,7 @@ function clearMealForm() {
     mealForm.reset();
 
     editingMeal = null;
+    showMessage("");
 
     mealFormTitle.textContent = "Add Meal";
     saveMealBtn.textContent = "Save Meal";
@@ -320,7 +442,7 @@ getById("clear-form-btn").addEventListener("click", () => {
 
 // ! save or update meal
 
-mealForm.addEventListener("submit", (event) => {
+mealForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!mealForm.checkValidity()) {
@@ -339,6 +461,34 @@ mealForm.addEventListener("submit", (event) => {
     // make sure the meal name is not empty
     if (!meal.name) {
         getById("meal-name").focus();
+        return;
+    }
+
+    // save it in the database, then load the meals again
+    if (backendReady) {
+        const formData = new FormData(mealForm);
+        let api = MEAL_ADD_API;
+
+        if (editingMeal) {
+            const meals = editingMeal.type === "recommended"
+                ? recommendedMeals
+                : customMeals;
+
+            formData.append("id", meals[editingMeal.index].id);
+            api = MEAL_EDIT_API;
+        }
+
+        const isNew = !editingMeal;
+
+        //! sendToBackend() is in main.js
+        if (await sendToBackend(api, formData, mealMessage)) {
+            clearMealForm();
+            await loadDiet();
+
+            if (isNew) {
+                showDiet("custom");
+            }
+        }
         return;
     }
 
@@ -365,3 +515,4 @@ mealForm.addEventListener("submit", (event) => {
 
 showDiet("recommended");
 renderDiet();
+loadDiet(true);

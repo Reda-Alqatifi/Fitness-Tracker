@@ -21,6 +21,47 @@
 
 /* //////////////// */
 
+/* !current status card */
+#status {
+    margin-bottom: var(--space-large);
+}
+#status h3 {
+    font-size: var(--font-mid);
+}
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-mid);
+}
+.status-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+
+    padding: var(--space-mid);
+
+    background-color: var(--color-cards);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+    border-radius: var(--radius-mid);
+}
+.status-label {
+    font-weight: bold;
+    font-size: calc(var(--font-small) * 0.9);
+    color: var(--color-text);
+}
+.status-value {
+    font-size: var(--font-large);
+    font-weight: bold;
+    color: var(--color-graphs-1);
+}
+.status-note {
+    margin: var(--space-small) 0 0;
+    font-size: calc(var(--font-small) * 0.8);
+    color: var(--color-text);
+}
+
+/* //////////////// */
+
 /* !charts */
 .FirstRow,
 .SecondRow {
@@ -113,6 +154,23 @@
     border-color: var(--color-border-3);
 }
 
+/* custom period dates (hidden until "Custom Period" is chosen) */
+#customRange:not([hidden]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-small);
+}
+#customRange input {
+    padding: var(--space-small);
+    font-size: calc(var(--font-small) * 0.9);
+
+    color: var(--color-text);
+    background-color: var(--color-cards);
+    border: var(--border-x-small) solid color-mix(in srgb, var(--color-border) var(--opacity-mid), transparent);
+    border-radius: var(--radius-small);
+}
+
 #exportPdfBtn {
     padding: var(--space-small) var(--space-large);
     font-size: calc(var(--font-small) * 0.9);
@@ -192,6 +250,10 @@
     .SecondRow {
         grid-template-columns: 1fr;
     }
+
+    .status-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* phones */
@@ -209,6 +271,15 @@
     .chart_contanor {
         height: 240px;
         padding: var(--space-small);
+    }
+
+    .status-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-small);
+    }
+
+    .status-value {
+        font-size: var(--font-mid);
     }
 
     .Centered_Icone {
