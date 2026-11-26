@@ -57,7 +57,6 @@ The SRS requires a "current status" card on the reports page (weight, height, BM
 | `reports.html` | New "Current Status" section at the top of `<main>`, with 6 small cards (ids `statusWeight`, `statusHeight`, `statusBmi`, `statusSmm`, `statusPbf`, `statusBfm`). SMM, PBF, and BFM have a `*` and a note: "Estimated from your BMI, age, and gender (not measured)". |
 | `reports.css` | Styles for the card: 6 columns on big screens, 3 on tablets, 2 on phones. It uses the same theme colors as the charts, so dark mode works. |
 | `reports.js` | New `renderStatus(data.status)`, called in `loadReport()`. Any missing value shows `--`. |
-| `Backend.md` | §7.4 explains the `status` units (kg, cm, %), and §10 and Hassan's tasks no longer list the card as missing. |
 
 The values stay `--` until `reports.php` is ready. Tested in the browser with fake data, in light mode, dark mode, and at phone width (no horizontal scroll).
 
@@ -67,10 +66,7 @@ The SRS now follows the updated project. The design and the writing style are th
 
 | Part | Change |
 |---|---|
-| **Backend** (new section, after Frontend) | **Folders:** what each folder does (Registration, Home, Profile, Reports, Diet, Exercises, includes, config). **Database tables:** the 8 tables. **Rules:** JSON answers, 401 goes to the sign-in form, hashed passwords and prepared statements, each user sees only his own data. |
+| **Backend** | **Folders:** what each folder does (Registration, Home, Profile, Reports, Diet, Exercises, includes, config). **Database tables:** the 8 tables. **Rules:** JSON answers, 401 goes to the sign-in form, hashed passwords and prepared statements, each user sees only his own data. |
 | **System architecture** | The empty `Backend (PHP) { }` now lists the folders, and the database list matches the real tables (Meals, Recommended Meals, Recommended Exercises, Daily Activity). |
-| **Tasks to do** | T11–T18 filled: T11 Database (Reda), T12 shared files and formulas (Reda, Hassan), T13 sign-in/register/logout (Mohammed), T14 profile (Mohammed), T15 home (Reda), T16 diet (Redwan), T17 exercises (Ahmed), T18 reports & testing (Hassan). T8–T10 marked ✅. Due dates are left empty. |
 | **Frontend pages** | Match what was built: the setup profile is inside the register form, logout and footer are popups, the navbar has the dark mode button, reports has the custom period, recommended exercises are view-only, the steps form is on the exercises page, and the meal form includes calories. The exercises day filter sentence was removed, because the page doesn't have it. |
-| **Requirements** | New user requirement and FR-20 "Steps Entry" (the next FR numbers moved by one). |
 | **Notes** | Use XAMPP to test the backend (Live Server can't run PHP), remove the brackets from the JS paths when a PHP file is finished, and ask Reda before changing `FT.SQL` or `includes`. |
-| **Table of Contents** | Updated in Word, with the new Backend entries and the right page numbers. The document is now 24 pages (it was 18). |
