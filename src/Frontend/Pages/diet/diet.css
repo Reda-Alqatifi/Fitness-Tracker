@@ -232,6 +232,16 @@ tbody tr:hover {
     gap: var(--space-small);
 }
 
+/* The reason from the backend (red), empty until saving fails */
+#meal-form .message {
+    margin: 0;
+    color: var(--color-button-1);
+    font-weight: bold;
+}
+#meal-form .message:empty {
+    display: none;
+}
+
 
 /* //////////////// */
 

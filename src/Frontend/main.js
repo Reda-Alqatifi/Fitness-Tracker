@@ -73,7 +73,7 @@ popup();
 
 // ! logout popup (header)
 
-const LOGOUT_API = "../../../Backend/[logout.php]"; //! [Backend]
+const LOGOUT_API = "../../../Backend/Registration/[logout.php]"; //! [Backend]
 const WELCOME_PAGE = "../welcome/welcome.html";
 
 function logoutPopup() {
@@ -162,4 +162,80 @@ sideMenu();
 
 // ////////////////////////////
 
-export { getById };
+// ! backend requests (shared by all the pages)
+
+/*
+    Every page imports these two functions, so 401 and errors are handled
+    the same way everywhere (see section 4 of src/Backend/Backend.md).
+*/
+
+const LOGIN_PAGE = "../Forms/login.html";
+
+//! GET data from the backend
+// returns the JSON, or null when not logged in (then the page goes to the login page)
+// throws an error when the backend is not ready or failed, so each page decides what to do
+async function getFromBackend(api) {
+    const response = await fetch(api, {
+        credentials: "same-origin",
+        headers: { "Accept": "application/json" },
+    });
+
+    // not logged in (or the session expired)
+    if (response.status === 401) {
+        window.location.href = LOGIN_PAGE;
+        return null;
+    }
+
+    if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
+    }
+
+    return response.json();
+}
+
+//! POST form data to the backend
+// returns true if it succeeded, or false (the reason is shown inside messageElement)
+// redirectOn401: false for login and register, because there 401 means "wrong email or password"
+async function sendToBackend(api, formData, messageElement, { redirectOn401 = true } = {}) {
+    // empty the old message (and remove the green color used by the profile page)
+    if (messageElement) {
+        messageElement.classList.remove("success");
+        messageElement.textContent = "";
+    }
+
+    try {
+        const response = await fetch(api, {
+            method: "POST",
+            body: formData,
+            credentials: "same-origin",
+        });
+
+        // not logged in (or the session expired)
+        if (response.status === 401 && redirectOn401) {
+            window.location.href = LOGIN_PAGE;
+            return false;
+        }
+
+        if (response.ok) {
+            return true;
+        }
+
+        // show the reason from the backend
+        const data = await response.json();
+        if (messageElement) {
+            messageElement.textContent = data.message || "Something went wrong.";
+        }
+    } catch (error) {
+        // the backend is not ready or failed
+        console.warn("Could not send to the backend:", error);
+        if (messageElement) {
+            messageElement.textContent = "Could not reach the server. Please try again later.";
+        }
+    }
+
+    return false;
+}
+
+// ////////////////////////////
+
+export { getById, getFromBackend, sendToBackend };

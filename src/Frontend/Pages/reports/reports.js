@@ -1,5 +1,5 @@
 // import '../../main.js';
-import { getById } from '../../main.js';
+import { getById, getFromBackend } from '../../main.js';
 
 /*For Today's Consumed vs. Burned Calories */
 const label_for_Today = ["Today's Consumed","Burned Calories"];
@@ -173,13 +173,15 @@ new MutationObserver(() => {
 /*
     Request:
         GET reports.php?range=week | month | year
- 
+        GET reports.php?range=custom&from=YYYY-MM-DD&to=YYYY-MM-DD
+
     Responses:
         200 -> success to access the data
         401 -> not logged in (the page redirects to the login page)
- 
+
     Expected response (ex) from backend (200):
         {
+            "status": { "weight": 78, "height": 175, "bmi": 25.5, "smm": 30.1, "pbf": 22.4, "bfm": 17.5 },
             "today": { "consumed": 2000, "burned": 500 },
             "steps": { "today": 7000, "goal": 10000 },
             "daily": [
@@ -188,27 +190,26 @@ new MutationObserver(() => {
         }
 */
  
-const REPORTS_API = "../../../Backend/[reports.php]"; //! [Backend]
-const LOGIN_PAGE = "../Forms/login.html";
- 
+const REPORTS_API = "../../../Backend/Reports/[reports.php]"; //! [Backend]
+
 //! get the report of the logged-in user from the backend
 async function fetchReportData(range) {
-    const response = await fetch(`${REPORTS_API}?range=${range}`, {
-        credentials: "same-origin",
-        headers: { "Accept": "application/json" },
-    });
- 
-    // not logged in (or the session expired)
-    if (response.status === 401) {
-        window.location.href = LOGIN_PAGE;
-        return null;
+    let query = `range=${range}`;
+
+    // the custom period needs both dates, wait until they are chosen
+    if (range === "custom") {
+        const from = getById("fromDate").value;
+        const to = getById("toDate").value;
+
+        if (!from || !to) {
+            return null;
+        }
+
+        query += `&from=${from}&to=${to}`;
     }
- 
-    if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-    }
- 
-    return response.json();
+
+    //! getFromBackend() is in main.js
+    return getFromBackend(`${REPORTS_API}?${query}`);
 }
  
 // ////////////////////////////
@@ -271,8 +272,25 @@ function renderTable(daily = []) {
     }
 }
  
+//! to fill the current status card (weight, height, BMI, SMM, PBF, BFM)
+function renderStatus(status = {}) {
+    const values = {
+        statusWeight: status.weight,
+        statusHeight: status.height,
+        statusBmi: status.bmi,
+        statusSmm: status.smm,
+        statusPbf: status.pbf,
+        statusBfm: status.bfm,
+    };
+
+    for (const [id, value] of Object.entries(values)) {
+        // "--" if there is no value
+        getById(id).textContent = (value === undefined || value === null) ? "--" : value;
+    }
+}
+
 // ////////////////////////////
- 
+
 async function loadReport() {
     try {
         const data = await fetchReportData(getById("timeframeSelect").value);
@@ -282,6 +300,7 @@ async function loadReport() {
             return;
         }
  
+        renderStatus(data.status);
         renderCharts(data);
         renderTable(data.daily);
     } catch (error) {
@@ -291,6 +310,12 @@ async function loadReport() {
 }
  
 // load again when the timeframe is changed
-getById("timeframeSelect").addEventListener("change", loadReport);
+getById("timeframeSelect").addEventListener("change", () => {
+    // show the dates only for the custom period
+    getById("customRange").hidden = getById("timeframeSelect").value !== "custom";
+    loadReport();
+});
+getById("fromDate").addEventListener("change", loadReport);
+getById("toDate").addEventListener("change", loadReport);
  
 loadReport();
