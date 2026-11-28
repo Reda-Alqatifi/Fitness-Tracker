@@ -1,4 +1,4 @@
-import { getById } from '../../main.js';
+import { getById, getFromBackend } from '../../main.js';
 
 // ! home page data (from the backend)
 
@@ -25,28 +25,7 @@ import { getById } from '../../main.js';
         }
 */
 
-const HOME_API = "../../../Backend/[home.php]"; //! [Backend]
-const LOGIN_PAGE = "../Forms/login.html";
-
-//! get the data of the logged-in user from the backend
-async function fetchHomeData() {
-    const response = await fetch(HOME_API, {
-        credentials: "same-origin",
-        headers: { "Accept": "application/json" },
-    });
-
-    // not logged in (or the session expired)
-    if (response.status === 401) {
-        window.location.href = LOGIN_PAGE;
-        return null;
-    }
-
-    if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-    }
-
-    return response.json();
-}
+const HOME_API = "../../../Backend/Home/[home.php]"; //! [Backend]
 
 // ////////////////////////////
 
@@ -136,7 +115,8 @@ function renderCalories(calories = {}) {
 
 async function loadHome() {
     try {
-        const data = await fetchHomeData();
+        //! getFromBackend() is in main.js
+        const data = await getFromBackend(HOME_API);
 
         // go back to the login page
         if (!data) {

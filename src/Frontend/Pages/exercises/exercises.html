@@ -12,37 +12,95 @@
     <!--! to use some google symbols, like Home icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
 </head>
-</head>
+
 <body>
 
+    <!-- Global Header -->
     <header id="global-header">
 
         <nav id="nav-bar">
 
-            <img class="logo" src="../../../../assets/images/FT logo.png" alt="FT logo"/>
+            <img class="logo"
+                src="../../../../assets/images/FT logo.png"
+                alt="FT logo"/>
+
+            <!-- the 3 lines button (only on small screens) -->
+            <button id="menu-btn"
+                    class="btn"
+                    type="button"
+                    aria-label="Menu"
+                    aria-expanded="false">
+
+                <span class="material-symbols-outlined">menu</span>
+
+            </button>
 
             <div id="sideMenu" class="side-menu">
+
                 <ul>
-                    <li><a href="../home/home.html">
-                        <span class="material-symbols-outlined">home</span>
-                        Home
-                    </a></li>
-                    <li><a href="../reports/reports.html">Reports</a></li>
-                    <li><a href="../exercises/exercises.html" class="selected">Exercises</a></li>
-                    <li><a href="../diet/diet.html">Diet</a></li>
-                    <li><a href="../profile/profile.html">Profile</a></li>
+
+                    <li>
+                        <a href="../home/home.html">
+                            <span class="material-symbols-outlined">home</span>
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../reports/reports.html">Reports</a>
+                    </li>
+
+                    <li>
+                        <a href="../exercises/exercises.html" class="selected">Exercises</a>
+                    </li>
+
+                    <li>
+                        <a href="../diet/diet.html" >Diet</a>
+                    </li>
+
+                    <li>
+                        <a href="../profile/profile.html">Profile</a>
+                    </li>
+
                 </ul>
 
                 <div class="buttons">
-                    <button id="logout-btn" class="btn">logout</button>
+
+                    <button id="logout-btn" class="btn">
+                        logout
+                    </button>
 
                     <button id="theme-switch" class="btn">
                         <span class="material-symbols-outlined">dark_mode</span>
                         <span class="material-symbols-outlined">light_mode</span>
                     </button>
+
                 </div>
+
             </div>
+
         </nav>
+
+
+        <!-- the logout popup -->
+        <dialog id="logout-popup">
+
+            <h2>Are you sure you want to logout?</h2>
+
+            <div class="popup-buttons">
+
+                <button id="logout-yes-btn" class="btn" type="button">
+                    Yes
+                </button>
+
+                <button id="logout-no-btn" class="btn" type="button">
+                    No
+                </button>
+
+            </div>
+
+        </dialog>
+
     </header>
 
     <!-- Main content -->
@@ -136,7 +194,7 @@
                 <h3>Add or Edit Exercise</h3>
             </header>
 
-            <form action="#" method="post">
+            <form id="exercise-form" action="#" method="post">
 
                 <!-- Exercise name -->
                 <p>
@@ -155,7 +213,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            name="training-days"
+                            name="training-days[]"
                             value="sunday"/>
                         Sunday
                     </label>
@@ -163,7 +221,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            name="training-days"
+                            name="training-days[]"
                             value="monday"/>
                         Monday
                     </label>
@@ -171,7 +229,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            name="training-days"
+                            name="training-days[]"
                             value="tuesday"/>
                         Tuesday
                     </label>
@@ -179,7 +237,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            name="training-days"
+                            name="training-days[]"
                             value="wednesday"/>
                         Wednesday
                     </label>
@@ -187,7 +245,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            name="training-days"
+                            name="training-days[]"
                             value="thursday"/>
                         Thursday
                     </label>
@@ -195,7 +253,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            name="training-days"
+                            name="training-days[]"
                             value="friday"/>
                         Friday
                     </label>
@@ -203,7 +261,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            name="training-days"
+                            name="training-days[]"
                             value="saturday"/>
                         Saturday
                     </label>
@@ -230,6 +288,9 @@
                     </select>
                 </p>
 
+                <!-- The reason from the backend when saving fails -->
+                <p id="exercise-message" class="message" role="alert"></p>
+
                 <!-- Form buttons -->
                 <p>
                     <button type="submit">Save Exercise</button>
@@ -240,12 +301,41 @@
         </article>
 
 
+        <!-- Today's steps (shown in the reports page) -->
+        <article>
+            <header>
+                <h3>Today's Steps</h3>
+            </header>
+
+            <form id="steps-form" action="#" method="post">
+                <p>
+                    <label for="steps">Steps:</label>
+                    <input
+                        type="number"
+                        id="steps"
+                        name="steps"
+                        min="0"
+                        max="100000"
+                        step="1"
+                        required/>
+                </p>
+
+                <!-- The reason from the backend when saving fails -->
+                <p id="steps-message" class="message" role="alert"></p>
+
+                <p>
+                    <button type="submit">Save Steps</button>
+                </p>
+            </form>
+        </article>
+
+
         <!-- Calories burned summary -->
         <aside>
             <h3>Calories Burned Today</h3>
 
             <p>
-                <strong>~350</strong> kcal
+                <strong id="calories-burned">~350</strong> kcal
                 (approximate, based on number of exercises)
             </p>
         </aside>

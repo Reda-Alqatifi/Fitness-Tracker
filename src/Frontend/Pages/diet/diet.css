@@ -1,1 +1,312 @@
 @import url("../../global.css");
+
+
+/* !main content */
+main {
+    font-family: var(--font-type-1);
+}
+
+main > h2 {
+    text-align: center;
+    font-size: var(--font-large);
+    margin: var(--space-x-large) 0;
+}
+
+
+/* //////////////// */
+
+
+/* !diet selector */
+.schedule-selector {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-mid);
+    margin-bottom: var(--space-large);
+}
+
+.schedule-btn {
+    cursor: pointer;
+    padding: var(--space-small) var(--space-large);
+
+    color: var(--color-text);
+    background-color: var(--color-cards);
+
+    border: var(--border-x-small) solid var(--color-border);
+    border-radius: var(--radius-small);
+
+    font-size: var(--font-small);
+    transition: var(--transition-mid);
+}
+
+.schedule-btn:hover {
+    color: var(--color-text-hover);
+    border-color: var(--color-text-hover);
+}
+
+.schedule-btn.active {
+    color: var(--palette-black);
+    background-color: var(--color-graphs-1);
+    border-color: var(--color-graphs-1);
+    font-weight: bold;
+}
+
+
+/* //////////////// */
+
+
+/* !articles */
+article {
+    background-color: var(--color-cards);
+    border: var(--border-x-small) solid
+        color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+
+    border-radius: var(--radius-mid);
+    padding: var(--space-large);
+    margin-bottom: var(--space-large);
+}
+
+article header {
+    margin-bottom: var(--space-mid);
+}
+
+article h3 {
+    font-size: var(--font-mid);
+    margin: 0;
+}
+
+article p {
+    line-height: 1.6;
+}
+
+
+/* //////////////// */
+
+
+/* !tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-small);
+    margin-top: var(--space-mid);
+}
+
+caption {
+    text-align: left;
+    font-weight: bold;
+    padding: var(--space-mid) 0;
+}
+
+th,
+td {
+    text-align: left;
+    padding: var(--space-mid);
+    border-bottom: var(--border-x-small) solid
+        color-mix(in srgb, var(--color-border) var(--opacity-low), transparent);
+}
+
+th {
+    font-weight: normal;
+    font-size: calc(var(--font-small) * 0.9);
+    opacity: 0.7;
+}
+
+tbody tr:hover {
+    background-color: var(--color-background-selected);
+}
+
+
+/* //////////////// */
+
+
+/* !meal action buttons */
+.edit-btn,
+.delete-btn,
+#add-meal-btn,
+#save-meal-btn,
+#clear-form-btn {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius-small);
+
+    padding: var(--space-small) var(--space-mid);
+    margin: var(--space-x-small);
+
+    font-size: var(--font-small);
+    transition: var(--transition-mid);
+}
+
+.edit-btn {
+    color: var(--palette-black);
+    background-color: var(--color-button-2);
+}
+
+.delete-btn {
+    color: var(--palette-white);
+    background-color: var(--color-button-1);
+}
+
+#add-meal-btn,
+#save-meal-btn {
+    color: var(--palette-black);
+    background-color: var(--color-graphs-1);
+    font-weight: bold;
+}
+
+#clear-form-btn {
+    color: var(--color-text-2);
+    background-color: var(--color-text);
+}
+
+.edit-btn:hover,
+.delete-btn:hover,
+#add-meal-btn:hover,
+#save-meal-btn:hover,
+#clear-form-btn:hover {
+    box-shadow: var(--shadow-low-blur) var(--color-text-hover);
+}
+
+
+/* //////////////// */
+
+
+/* !daily nutrition */
+#daily-nutrition h4 {
+    font-size: var(--font-small);
+    margin-bottom: var(--space-mid);
+}
+
+#daily-nutrition progress {
+    width: 100%;
+    height: 12px;
+    accent-color: var(--color-graphs-1);
+}
+
+#calorie-summary p {
+    margin: var(--space-mid) 0;
+}
+
+#macronutrient-summary table td:last-child {
+    min-width: 150px;
+}
+
+
+/* //////////////// */
+
+
+/* !meal form */
+#meal-form {
+    max-width: var(--size-2x-large);
+}
+
+#meal-form p {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+    margin-bottom: var(--space-mid);
+}
+
+#meal-form label {
+    font-weight: bold;
+}
+
+#meal-form input {
+    width: 100%;
+    padding: var(--space-small);
+
+    color: var(--color-text);
+    background-color: var(--color-background);
+
+    border: var(--border-x-small) solid var(--color-border);
+    border-radius: var(--radius-small);
+
+    font-size: var(--font-small);
+}
+
+#meal-form input:focus {
+    outline: var(--border-small) solid var(--color-graphs-1);
+}
+
+#meal-form p:last-child {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-small);
+}
+
+/* The reason from the backend (red), empty until saving fails */
+#meal-form .message {
+    margin: 0;
+    color: var(--color-button-1);
+    font-weight: bold;
+}
+#meal-form .message:empty {
+    display: none;
+}
+
+
+/* //////////////// */
+
+
+/* !smaller screens */
+
+/* tablets */
+@media (max-width: 900px) {
+
+    article {
+        padding: var(--space-mid);
+    }
+
+    table {
+        font-size: calc(var(--font-small) * 0.9);
+    }
+
+    th,
+    td {
+        padding: var(--space-small);
+    }
+
+}
+
+
+/* phones */
+@media (max-width: 600px) {
+
+    .schedule-selector {
+        flex-direction: column;
+        gap: var(--space-small);
+    }
+
+    .schedule-btn {
+        width: 100%;
+    }
+
+    article {
+        padding: var(--space-mid);
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    #meal-form {
+        width: 100%;
+    }
+
+    #meal-form p:last-child {
+        flex-direction: column;
+    }
+
+    #meal-form button {
+        width: 100%;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        padding: var(--space-small);
+        font-size: calc(var(--font-small) * 0.85);
+    }
+
+}
+body {
+    background-color: var(--color-background) !important;
+}

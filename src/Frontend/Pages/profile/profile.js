@@ -1,4 +1,4 @@
-import { getById } from "../../main.js";
+import { getById, getFromBackend, sendToBackend } from "../../main.js";
 
 // Profile page (the data comes from the backend, the forms are sent to it)
 
@@ -39,12 +39,11 @@ import { getById } from "../../main.js";
             { "message": "Wrong password" }
 */
 
-const PROFILE_API = "../../../Backend/[profile.php]"; //! [Backend]
-const EDIT_API = "../../../Backend/[edit_profile.php]"; //! [Backend]
-const PASSWORD_API = "../../../Backend/[change_password.php]"; //! [Backend]
-const DELETE_API = "../../../Backend/[delete_account.php]"; //! [Backend]
+const PROFILE_API = "../../../Backend/Profile/[profile.php]"; //! [Backend]
+const EDIT_API = "../../../Backend/Profile/[edit_profile.php]"; //! [Backend]
+const PASSWORD_API = "../../../Backend/Profile/[change_password.php]"; //! [Backend]
+const DELETE_API = "../../../Backend/Profile/[delete_account.php]"; //! [Backend]
 
-const LOGIN_PAGE = "../Forms/login.html";
 const WELCOME_PAGE = "../welcome/welcome.html";
 
 // With the "maintain" goal, the target weight can be this far (in kg) from the weight
@@ -78,26 +77,6 @@ const deleteMessage = getById("delete-message");
 const deletePopup = getById("delete-popup");
 const deleteYesBtn = getById("delete-yes-btn");
 const deleteNoBtn = getById("delete-no-btn");
-
-// Get the data of the logged-in user from the backend
-async function fetchProfileData() {
-    const response = await fetch(PROFILE_API, {
-        credentials: "same-origin",
-        headers: { "Accept": "application/json" },
-    });
-
-    // not logged in (or the session expired)
-    if (response.status === 401) {
-        window.location.href = LOGIN_PAGE;
-        return null;
-    }
-
-    if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-    }
-
-    return response.json();
-}
 
 // Put a value inside an element, or "--" if there is no value
 function setText(id, value) {
@@ -144,7 +123,8 @@ function fillEditForm(data) {
 
 async function loadProfile() {
     try {
-        const data = await fetchProfileData();
+        //! getFromBackend() is in main.js
+        const data = await getFromBackend(PROFILE_API);
 
         // go back to the login page
         if (!data) {
@@ -160,34 +140,6 @@ async function loadProfile() {
 }
 
 loadProfile();
-
-// Send a form to the backend, and return true if it succeeded
-async function sendForm(form, api, message) {
-    message.classList.remove("success");
-    message.textContent = "";
-
-    try {
-        const response = await fetch(api, {
-            method: "POST",
-            body: new FormData(form),
-            credentials: "same-origin",
-        });
-
-        if (response.ok) {
-            return true;
-        }
-
-        // show the reason from the backend
-        const data = await response.json();
-        message.textContent = data.message || "Something went wrong.";
-    } catch (error) {
-        // the backend is not ready or failed
-        console.warn("Could not send the form:", error);
-        message.textContent = "Could not reach the server. Please try again later.";
-    }
-
-    return false;
-}
 
 // Show a green message under a form
 function showSuccess(message, text) {
@@ -240,7 +192,8 @@ editForm.addEventListener("submit", async (event) => {
         return;
     }
 
-    const saved = await sendForm(editForm, EDIT_API, editMessage);
+    //! sendToBackend() is in main.js
+    const saved = await sendToBackend(EDIT_API, new FormData(editForm), editMessage);
 
     if (saved) {
         showSuccess(editMessage, "Your information was saved.");
@@ -260,7 +213,8 @@ passwordForm.addEventListener("submit", async (event) => {
         return;
     }
 
-    const changed = await sendForm(passwordForm, PASSWORD_API, passwordMessage);
+    //! sendToBackend() is in main.js
+    const changed = await sendToBackend(PASSWORD_API, new FormData(passwordForm), passwordMessage);
 
     if (changed) {
         passwordForm.reset();
@@ -293,7 +247,8 @@ deleteNoBtn.addEventListener("click", () => {
 deleteYesBtn.addEventListener("click", async () => {
     deletePopup.close();
 
-    const deleted = await sendForm(deleteForm, DELETE_API, deleteMessage);
+    //! sendToBackend() is in main.js
+    const deleted = await sendToBackend(DELETE_API, new FormData(deleteForm), deleteMessage);
 
     if (deleted) {
         window.location.href = WELCOME_PAGE;

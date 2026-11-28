@@ -1,5 +1,6 @@
 // import '../../main.js';
-import { getById } from '../../main.js';
+
+import { getById, getFromBackend } from '../../main.js';
 
 /*For Today's Consumed vs. Burned Calories */
 const label_for_Today = ["Today's Consumed","Burned Calories"];
@@ -17,7 +18,25 @@ const weightData = [82, 81.2, 80.5, 79.8, 79];
 
 
 Chart.defaults.font.family = "'Helvetica Neue', 'Arial', sans-serif";
-Chart.defaults.color = '#000000';
+
+// chart text and grid colors that follow the theme (dark / light)
+function applyChartTheme(charts = []) {
+    const isDark = document.body.classList.contains("darkmode");
+    const text = isDark ? "#ffffff" : "#000000";
+    const grid = isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)";
+
+    Chart.defaults.color = text;
+    Chart.defaults.borderColor = grid;
+
+    for (const chart of charts) {
+        for (const scale of Object.values(chart.options.scales || {})) {
+            scale.ticks.color = text;
+            scale.grid.color = grid;
+        }
+        chart.update();
+    }
+}
+applyChartTheme();
 
 
 /*Chart for Today's Consumed vs. Burned Calories */
@@ -145,47 +164,36 @@ const Weight_Chart = new Chart('weightCanvas', {
   }
 });
 
+
+// redraw the charts when the theme is switched
+new MutationObserver(() => {
+    applyChartTheme([TodayChart, Burned_Calories_Chart, Steps_Chart, Weight_Chart]);
+}).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
 // ! reports page data (from the backend)
  
-/*
-    Request:
-        GET reports.php?range=week | month | year
- 
-    Responses:
-        200 -> success to access the data
-        401 -> not logged in (the page redirects to the login page)
- 
-    Expected response (ex) from backend (200):
-        {
-            "today": { "consumed": 2000, "burned": 500 },
-            "steps": { "today": 7000, "goal": 10000 },
-            "daily": [
-                { "date": "2026-11-09", "weight": 82, "consumed": 2100, "burned": 330, "steps": 6200 }
-            ]
-        }
-*/
- 
-const REPORTS_API = "../../../Backend/[reports.php]"; //! [Backend]
-const LOGIN_PAGE = "../Forms/login.html";
- 
+
+const REPORTS_API = "../../../Backend/Reports/[reports.php]"; //! [Backend]
+
 //! get the report of the logged-in user from the backend
 async function fetchReportData(range) {
-    const response = await fetch(`${REPORTS_API}?range=${range}`, {
-        credentials: "same-origin",
-        headers: { "Accept": "application/json" },
-    });
- 
-    // not logged in (or the session expired)
-    if (response.status === 401) {
-        window.location.href = LOGIN_PAGE;
-        return null;
+    let query = `range=${range}`;
+
+    // the custom period needs both dates, wait until they are chosen
+    if (range === "custom") {
+        const from = getById("fromDate").value;
+        const to = getById("toDate").value;
+
+        if (!from || !to) {
+            return null;
+        }
+
+        query += `&from=${from}&to=${to}`;
     }
- 
-    if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-    }
- 
-    return response.json();
+
+    //! getFromBackend() is in main.js
+    return getFromBackend(`${REPORTS_API}?${query}`);
+
 }
  
 // ////////////////////////////
@@ -248,8 +256,30 @@ function renderTable(daily = []) {
     }
 }
  
+
 // ////////////////////////////
  
+
+//! to fill the current status card (weight, height, BMI, SMM, PBF, BFM)
+function renderStatus(status = {}) {
+    const values = {
+        statusWeight: status.weight,
+        statusHeight: status.height,
+        statusBmi: status.bmi,
+        statusSmm: status.smm,
+        statusPbf: status.pbf,
+        statusBfm: status.bfm,
+    };
+
+    for (const [id, value] of Object.entries(values)) {
+        // "--" if there is no value
+        getById(id).textContent = (value === undefined || value === null) ? "--" : value;
+    }
+}
+
+// ////////////////////////////
+
+
 async function loadReport() {
     try {
         const data = await fetchReportData(getById("timeframeSelect").value);
@@ -258,7 +288,9 @@ async function loadReport() {
         if (!data) {
             return;
         }
- 
+
+        renderStatus(data.status);
+
         renderCharts(data);
         renderTable(data.daily);
     } catch (error) {
@@ -268,6 +300,17 @@ async function loadReport() {
 }
  
 // load again when the timeframe is changed
+
 getById("timeframeSelect").addEventListener("change", loadReport);
+
+getById("timeframeSelect").addEventListener("change", () => {
+    // show the dates only for the custom period
+    getById("customRange").hidden = getById("timeframeSelect").value !== "custom";
+    loadReport();
+});
+getById("fromDate").addEventListener("change", loadReport);
+getById("toDate").addEventListener("change", loadReport);
+
  
 loadReport();
+
